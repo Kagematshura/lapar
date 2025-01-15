@@ -21,8 +21,8 @@
                         <a href="#" class="block p-2 rounded">Explore</a>
                     </li>
                     <li class="mb-2 flex items-center hover:bg-gray-700">
-                        <box-icon type='solid' name='notepad' class="mr-2"></box-icon>
-                        <a href="#" class="block p-2 rounded">Create Planning</a>
+                        <box-icon name='calculator' type='solid' ></box-icon>
+                        <a href="#" class="block p-2 rounded">Calculator</a>
                     </li>
                     <li class="mb-2 flex items-center hover:bg-gray-700">
                         <box-icon type='solid' name='chat' class="mr-2"></box-icon>

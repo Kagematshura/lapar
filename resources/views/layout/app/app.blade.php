@@ -12,7 +12,7 @@
 <body>
 
     <div>
-        @yield()
+
     </div>
 </body>
 </html>
