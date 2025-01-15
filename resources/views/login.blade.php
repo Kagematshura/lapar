@@ -1,12 +1,19 @@
-@vite('resources/css/app.css')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login & Register</title>
+  @vite('resources/css/app.css')
+</head>
 <body class="flex items-center justify-center min-h-screen bg-[#185863]">
 
-  <div class="w-full max-w-lg p-6 bg-[#E8F6F9] rounded-lg shadow-lg">
+  <div class="w-full h-4/5 max-w-lg p-6 bg-[#E8F6F9] rounded-lg shadow-lg">
 
     <div class="flex justify-center mb-6">
       <button
         id="toggle-signup"
-        class="px-4 py-2 text-sm font-semibold text-gray-600 bg-gray-300 rounded-l-lg focus:outline-none toggle-button"
+        class="px-4 py-2 text-sm font-semibold text-gray-600 bg-gray-300 bg-gray-200 rounded-l-lg focus:outline-none toggle-button"
         data-target="signup">
         Sign Up
       </button>
@@ -25,17 +32,17 @@
         action="/signup"
         method="POST"
         class="transition-all duration-300 transform opacity-100">
-        <h2 class="text-2xl font-semibold text-center text-gray-800">Sign Up</h2>
-            <a
-            href="#"
-            class="flex items-center justify-center px-2 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-full hover:bg-gray-100">
-            <img
-                src="https://www.svgrepo.com/show/355037/google.svg"
-                alt="Google Logo"
-                class="w-5 h-5 mr-2"/>
-                Continue with Google
-            </a>
-        <div class="mt-6">
+        <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Sign Up</h2>
+        <a
+          href="#"
+          class="flex items-center justify-center px-2 py-2 mb-6 text-sm text-gray-700 bg-white border border-gray-300 rounded-full hover:bg-gray-100">
+          <img
+            src="https://www.svgrepo.com/show/355037/google.svg"
+            alt="Google Logo"
+            class="w-5 h-5 mr-2"/>
+          Continue with Google
+        </a>
+        <div class="mt-4">
           <label for="signup-email" class="block text-sm font-medium text-gray-600">Email Address</label>
           <input
             type="email"
@@ -65,8 +72,8 @@
         action="/login"
         method="POST"
         class="absolute top-0 left-0 w-full transition-all duration-300 transform opacity-0 -translate-x-full">
-        <h2 class="text-2xl font-semibold text-center text-gray-800">Log In</h2>
-        <div class="mt-6">
+        <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Log In</h2>
+        <div class="mt-4">
           <label for="login-email" class="block text-sm font-medium text-gray-600">Email Address</label>
           <input
             type="email"
@@ -84,19 +91,15 @@
             required
             class="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"/>
         </div>
-
-        <div>
-            <a
-            href="#"
-            class="flex items-center justify-center px-2 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-full hover:bg-gray-100">
-            <img
-                src="https://www.svgrepo.com/show/355037/google.svg"
-                alt="Google Logo"
-                class="w-5 h-5 mr-2"/>
-                Continue with Google
-            </a>
-        </div>
-
+        <a
+        href="#"
+        class="flex items-center justify-center px-2 py-2 mb-6 text-sm text-gray-700 bg-white border border-gray-300 rounded-full hover:bg-gray-100">
+        <img
+          src="https://www.svgrepo.com/show/355037/google.svg"
+          alt="Google Logo"
+          class="w-5 h-5 mr-2"/>
+        Continue with Google
+      </a>
         <div class="flex items-center justify-between mt-4">
           <label class="inline-flex items-center">
             <input
@@ -117,7 +120,6 @@
   </div>
 
   <script>
-    //toggle nya gk nyala bejirr
     const toggleButtons = document.querySelectorAll('.toggle-button');
     const signupForm = document.getElementById('signup-form');
     const loginForm = document.getElementById('login-form');
@@ -126,19 +128,31 @@
       button.addEventListener('click', () => {
         const target = button.getAttribute('data-target');
 
-        //masih sloppy
         if (target === 'signup') {
           signupForm.style.opacity = '1';
           signupForm.style.transform = 'translateX(0)';
+          signupForm.style.zIndex = '1';
+
           loginForm.style.opacity = '0';
           loginForm.style.transform = 'translateX(-100%)';
+          loginForm.style.zIndex = '-1';
+
+          toggleButtons[0].classList.add('bg-gray-300');
+          toggleButtons[1].classList.remove('bg-gray-300');
         } else {
           loginForm.style.opacity = '1';
           loginForm.style.transform = 'translateX(0)';
+          loginForm.style.zIndex = '1';
+
           signupForm.style.opacity = '0';
           signupForm.style.transform = 'translateX(100%)';
+          signupForm.style.zIndex = '-1';
+
+          toggleButtons[1].classList.add('bg-gray-300');
+          toggleButtons[0].classList.remove('bg-gray-300');
         }
       });
     });
   </script>
 </body>
+</html>
