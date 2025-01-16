@@ -44,7 +44,7 @@
     </aside>
 
     <main class="flex-1 flex items-center justify-center p-12">
-        <div class="bg-[#2A7886] rounded-lg shadow-lg flex items-center justify-center p-8 space-x-6 w-full max-w-4xl relative">
+        <div class="bg-[#2A7886] rounded-lg shadow-lg flex items-center p-8 space-x-6 w-full max-w-4xl relative">
             <img
                 src="https://via.placeholder.com/150"
                 alt="Profile Picture"
@@ -52,10 +52,10 @@
             <div class="text-white space-y-4">
                 <span class="text-4xl font-bold">Karston Alexandra</span>
                 <span class="text-xl">alexandrakarston@gmail.com</span>
-                <a
-                    href="#"
-                    class="flex bg-[#0B4A7C] hover:bg-[#1b405f] px-6 py-1 rounded-lg text-white font-semibold">Edit</a>
             </div>
+            <a
+                href="#"
+                class="absolute bottom-4 right-4 flex bg-[#0B4A7C] hover:bg-[#1b405f] px-6 py-1 rounded-lg text-white font-semibold">Edit</a>
         </div>
     </main>
 
