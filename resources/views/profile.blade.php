@@ -9,39 +9,14 @@
 </head>
 <body class="flex bg-[#185863] h-screen">
 
-    <aside class="w-64 bg-[#2A7886] text-white flex flex-col shadow-md shrink-0">
-        <div class="p-4 font-bold text-xl border-b border-gray-600">
-            Sidebar Title
-        </div>
-        <nav class="p-4">
-            <ul>
-                <li class="mb-2 flex items-center hover:bg-gray-700">
-                    <box-icon type='solid' name='edit' class="mr-2"></box-icon>
-                    <a href="#" class="block p-2 rounded">Explore</a>
-                </li>
-                <li class="mb-2 flex items-center hover:bg-gray-700">
-                    <box-icon name='calculator' type='solid' class="mr-2"></box-icon>
-                    <a href="#" class="block p-2 rounded">Calculator</a>
-                </li>
-                <li class="mb-2 flex items-center hover:bg-gray-700">
-                    <box-icon type='solid' name='chat' class="mr-2"></box-icon>
-                    <a href="#" class="block p-2 rounded">Notifications</a>
-                </li>
-                <li class="mb-2 flex items-center hover:bg-gray-700">
-                    <box-icon type='solid' name='user' class="mr-2"></box-icon>
-                    <a href="#" class="block p-2 rounded">Profile</a>
-                </li>
-                <li class="mb-2 flex items-center hover:bg-gray-700">
-                    <box-icon type='solid' name='cog' class="mr-2"></box-icon>
-                    <a href="#" class="block p-2 rounded">Settings</a>
-                </li>
-                <li class="mb-2 flex items-center hover:bg-gray-700">
-                    <box-icon name='slider' class="mr-2"></box-icon>
-                    <a href="#" class="block p-2 rounded">Tools</a>
-                </li>
-            </ul>
-        </nav>
-    </aside>
+    <x-sidebar :menu-items="[
+    ['name' => 'Explore', 'link' => '#', 'icon' => 'edit'],
+    ['name' => 'Calculator', 'link' => '#', 'icon' => 'calculator'],
+    ['name' => 'Notifications', 'link' => '#', 'icon' => 'chat'],
+    ['name' => 'Profile', 'link' => '#', 'icon' => 'user'],
+    ['name' => 'Settings', 'link' => '#', 'icon' => 'cog'],
+    ['name' => 'Tools', 'link' => '#', 'icon' => 'slider', 'type' => 'regular'],
+    ]" />
 
     <main class="flex-1 flex items-center justify-center p-12">
         <div class="bg-[#2A7886] rounded-lg shadow-lg flex items-center p-8 space-x-6 w-full max-w-4xl relative">

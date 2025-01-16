@@ -10,39 +10,14 @@
 <body class="bg-[#185863]">
     <div class="flex h-screen">
 
-        <aside class="w-64 bg-[#2A7886] text-white flex flex-col shadow-md">
-            <div class="p-4 font-bold text-xl border-b border-gray-600">
-                Sidebar Title
-            </div>
-            <nav class="p-4">
-                <ul>
-                    <li class="mb-2 flex items-center hover:bg-gray-700">
-                        <box-icon type='solid' name='edit' class="mr-2"></box-icon>
-                        <a href="#" class="block p-2 rounded">Explore</a>
-                    </li>
-                    <li class="mb-2 flex items-center hover:bg-gray-700">
-                        <box-icon name='calculator' type='solid' ></box-icon>
-                        <a href="#" class="block p-2 rounded">Calculator</a>
-                    </li>
-                    <li class="mb-2 flex items-center hover:bg-gray-700">
-                        <box-icon type='solid' name='chat' class="mr-2"></box-icon>
-                        <a href="#" class="block p-2 rounded">Notifications</a>
-                    </li>
-                    <li class="mb-2 flex items-center hover:bg-gray-700">
-                        <box-icon type='solid' name='user'></box-icon>
-                        <a href="#" class="block p-2 rounded">Profile</a>
-                    </li>
-                    <li class="mb-2 flex items-center hover:bg-gray-700">
-                        <box-icon type='solid' name='cog'></box-icon>
-                        <a href="#" class="block p-2 rounded">Settings</a>
-                    </li>
-                    <li class="mb-2 flex items-center hover:bg-gray-700">
-                        <box-icon name='slider'></box-icon>
-                        <a href="#" class="block p-2 rounded">Tools</a>
-                    </li>
-                </ul>
-            </nav>
-        </aside>
+    <x-sidebar :menu-items="[
+    ['name' => 'Explore', 'link' => '#', 'icon' => 'edit'],
+    ['name' => 'Calculator', 'link' => '#', 'icon' => 'calculator'],
+    ['name' => 'Notifications', 'link' => '#', 'icon' => 'chat'],
+    ['name' => 'Profile', 'link' => '#', 'icon' => 'user'],
+    ['name' => 'Settings', 'link' => '#', 'icon' => 'cog'],
+    ['name' => 'Tools', 'link' => '#', 'icon' => 'slider', 'type' => 'regular'],
+    ]" />
 
         <div class="flex-1 flex flex-col items-center justify-center">
             <div class="mb-4">
