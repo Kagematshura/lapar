@@ -16,7 +16,6 @@
     ['name' => 'Notifications', 'link' => '#', 'icon' => 'chat'],
     ['name' => 'Profile', 'link' => '#', 'icon' => 'user'],
     ['name' => 'Settings', 'link' => '#', 'icon' => 'cog'],
-    ['name' => 'Tools', 'link' => '#', 'icon' => 'slider', 'type' => 'regular'],
     ]" />
 
         <div class="flex-1 flex flex-col items-center justify-center">
