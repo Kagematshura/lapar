@@ -9,7 +9,11 @@ use App\Http\Controllers\CalculatorController;
 Route::get('/', function () {
     return view('welcome');
 });
+//login
 Route::get('/login', [LoginController::class, 'login'])->name('login');
-Route::get('/main_page', [MainPageController::class, 'index'])->name('main_page');
+//mainPage
+Route::get('/main_page', [MainPageController::class, 'index'])->name('main.main_page');
+//profile
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+//calculator
 Route::get('/calculator', [CalculatorController::class, 'index'])->name('calculator');

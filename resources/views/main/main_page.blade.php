@@ -7,14 +7,6 @@
 <body class="bg-[#185863]">
     <div class="flex h-screen">
 
-        <x-sidebar :menu-items="[
-        ['name' => 'Explore', 'link' => '#', 'icon' => 'edit'],
-        ['name' => 'Calculator', 'link' => '#', 'icon' => 'calculator'],
-        ['name' => 'Notifications', 'link' => '#', 'icon' => 'chat'],
-        ['name' => 'Profile', 'link' => '#', 'icon' => 'user'],
-        ['name' => 'Settings', 'link' => '#', 'icon' => 'cog'],
-        ]" />
-
         <div class="flex flex-col flex-1">
 
             <div class="w-full">
@@ -51,3 +43,4 @@
     </div>
 </body>
 </html>
+@endsection
