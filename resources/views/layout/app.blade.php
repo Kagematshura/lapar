@@ -11,13 +11,13 @@
 </head>
 <body>
 
-    <div class="h-screen flex">
+    <div class="flex">
         <x-sidebar :menu-items="[
             ['name' => 'Explore', 'link' => '/main_page', 'icon' => 'edit'],
             ['name' => 'Calculator', 'link' => '/calculator', 'icon' => 'calculator'],
             ['name' => 'Notifications', 'link' => '#', 'icon' => 'chat'],
             ['name' => 'Profile', 'link' => '/profile', 'icon' => 'user'],
-            ['name' => 'Settings', 'link' => '#', 'icon' => 'cog'],
+            ['name' => 'Settings', 'link' => '/settings', 'icon' => 'cog'],
             ]" />`
         @yield('content')
     </div>
