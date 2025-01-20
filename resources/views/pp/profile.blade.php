@@ -1,14 +1,10 @@
+@extends('layout.app')
+
+@section('content')
 @vite('resources/css/app.css')
 <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 
 <body class="flex bg-[#185863] h-screen">
-    <x-sidebar :menu-items="[
-        ['name' => 'Explore', 'link' => '#', 'icon' => 'edit'],
-        ['name' => 'Calculator', 'link' => '#', 'icon' => 'calculator'],
-        ['name' => 'Notifications', 'link' => '#', 'icon' => 'chat'],
-        ['name' => 'Profile', 'link' => '#', 'icon' => 'user'],
-        ['name' => 'Settings', 'link' => '#', 'icon' => 'cog'],
-    ]" />
 
     <main class="flex-1 flex items-center justify-center p-12">
         <div class="bg-[#2A7886] rounded-lg shadow-lg flex items-center p-8 space-x-6 w-full max-w-4xl relative">

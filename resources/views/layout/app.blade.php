@@ -16,7 +16,7 @@
             ['name' => 'Explore', 'link' => '/main_page', 'icon' => 'edit'],
             ['name' => 'Calculator', 'link' => '/calculator', 'icon' => 'calculator'],
             ['name' => 'Notifications', 'link' => '#', 'icon' => 'chat'],
-            ['name' => 'Profile', 'link' => '#', 'icon' => 'user'],
+            ['name' => 'Profile', 'link' => '/profile', 'icon' => 'user'],
             ['name' => 'Settings', 'link' => '#', 'icon' => 'cog'],
             ]" />`
         @yield('content')

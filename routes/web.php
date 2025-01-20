@@ -14,6 +14,6 @@ Route::get('/login', [LoginController::class, 'login'])->name('login');
 //mainPage
 Route::get('/main_page', [MainPageController::class, 'index'])->name('main.main_page');
 //profile
-Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+Route::get('/profile', [ProfileController::class, 'index'])->name('pp.profile');
 //calculator
-Route::get('/calculator', [CalculatorController::class, 'index'])->name('calculator');
+Route::get('/calculator', [CalculatorController::class, 'index'])->name('plan.calculator');
