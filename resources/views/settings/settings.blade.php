@@ -1,7 +1,5 @@
 @extends('layout.app')
 @section('content')
-@vite('resources/css/app.css')
-<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 
 <body class="flex bg-[#185863] h-screen">
     <main class="flex flex-1 ml-40 items-center">
@@ -18,11 +16,11 @@
                         <span class="text-white text-4xl font-semibold">Notifications</span>
                         <label class="relative inline-flex items-center cursor-pointer">
                             <input type="checkbox" class="sr-only peer">
-                            <div class="w-16 h-9 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 
-                                        peer-checked:after:translate-x-7 peer-checked:after:border-white 
-                                        after:content-[''] after:absolute after:top-1 after:left-1 
-                                        after:bg-white after:border-gray-300 after:border after:rounded-full 
-                                        after:h-7 after:w-7 after:transition-all dark:border-gray-600 
+                            <div class="w-16 h-9 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700
+                                        peer-checked:after:translate-x-7 peer-checked:after:border-white
+                                        after:content-[''] after:absolute after:top-1 after:left-1
+                                        after:bg-white after:border-gray-300 after:border after:rounded-full
+                                        after:h-7 after:w-7 after:transition-all dark:border-gray-600
                                         peer-checked:bg-[#07222E]">
                             </div>
                         </label>
