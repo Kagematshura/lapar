@@ -28,9 +28,9 @@
             </div>
             <div class="mt-4 text-center">
                 <a
-                    href=""
+                    href="{{route('plan.planning')}}"
                     class="bg-[#185863] hover:bg-[#144E53] text-white font-medium py-2 px-6 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-green-500">
-                    Hitung Ulang
+                    Buat Planning
                 </a>
             </div>
         </div>
