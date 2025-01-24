@@ -25,6 +25,7 @@ Route::post('/bmi-calculator', [CalculatorController::class, 'calculate'])->name
 
 Route::get('/calculator', [CalculatorController::class, 'index'])->name('calculator.index');
 Route::post('/calculator/calculate', [CalculatorController::class, 'calculate'])->name('calculate.bmi');
+Route::get('/planning', [CalculatorController::class, 'makePlanning'])->name('plan.planning');
 
 // Settings
 Route::get('/settings', [SettingsController::class, 'index'])->name('settings.settings');

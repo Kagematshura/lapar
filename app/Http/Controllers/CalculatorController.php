@@ -46,4 +46,8 @@ class CalculatorController extends Controller
 
         return view('plan.calculator', compact('bmi', 'bbi', 'kategori', 'gender', 'umur'));
     }
+
+    public function makePlanning(){
+        return view('plan.planning');
+    }
 }
