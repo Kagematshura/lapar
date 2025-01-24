@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CalculatorController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\FormResepController;
+use App\Http\Controllers\PlanningController;
 
 Route::get('/', function () {
     return view('welcome');
