@@ -6,12 +6,16 @@ use App\Http\Controllers\MainPageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CalculatorController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\FormResepController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 //login
 Route::get('/login', [LoginController::class, 'login'])->name('login');
+
+//Resep
+Route::get('/Form_resep', [FormResepController::class, 'FormResep'])->name('resep.form_resep');
 
 //mainPage
 Route::get('/main_page', [MainPageController::class, 'index'])->name('main.main_page');
