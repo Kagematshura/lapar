@@ -1,8 +1,6 @@
 @extends('layout.app')
 
 @section('content')
-@vite('resources/css/app.css')
-<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 
 <body class="flex bg-[#185863] h-screen">
 
