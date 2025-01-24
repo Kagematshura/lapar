@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login & Register</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   @vite('resources/css/app.css')
 </head>
 <body class="flex items-center justify-center min-h-screen bg-[#185863]">
@@ -49,7 +50,9 @@
             id="signup-email"
             name="email"
             required
-            class="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"/>
+            class="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            aria-describedby="signup-email-error"/>
+          <span id="signup-email-error" class="text-red-500 text-sm hidden">Invalid email format.</span>
         </div>
         <div class="mt-4">
           <label for="signup-password" class="block text-sm font-medium text-gray-600">Password</label>
@@ -58,7 +61,9 @@
             id="signup-password"
             name="password"
             required
-            class="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"/>
+            class="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            aria-describedby="signup-password-error"/>
+          <span id="signup-password-error" class="text-red-500 text-sm hidden">Password is required.</span>
         </div>
         <button
           type="submit"
@@ -80,7 +85,9 @@
             id="login-email"
             name="email"
             required
-            class="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"/>
+            class="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            aria-describedby="login-email-error"/>
+          <span id="login-email-error" class="text-red-500 text-sm hidden">Invalid email format.</span>
         </div>
         <div class="mt-4">
           <label for="login-password" class="block text-sm font-medium text-gray-600">Password</label>
@@ -89,17 +96,19 @@
             id="login-password"
             name="password"
             required
-            class="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"/>
+            class="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            aria-describedby="login-password-error"/>
+          <span id="login-password-error" class="text-red-500 text-sm hidden">Password is required.</span>
         </div>
         <a
-        href="#"
-        class="flex items-center justify-center px-2 py-2 mb-6 text-sm text-gray-700 bg-white border border-gray-300 rounded-full hover:bg-gray-100">
-        <img
-          src="https://www.svgrepo.com/show/355037/google.svg"
-          alt="Google Logo"
-          class="w-5 h-5 mr-2"/>
-        Continue with Google
-      </a>
+          href="#"
+          class="flex items-center justify-center px-2 py-2 mb-6 text-sm text-gray-700 bg-white border border-gray-300 rounded-full hover:bg-gray-100">
+          <img
+            src="https://www.svgrepo.com/show/355037/google.svg"
+            alt="Google Logo"
+            class="w-5 h-5 mr-2"/>
+          Continue with Google
+        </a>
         <div class="flex items-center justify-between mt-4">
           <label class="inline-flex items-center">
             <input
@@ -123,7 +132,7 @@
     const toggleButtons = document.querySelectorAll('.toggle-button');
     const signupForm = document.getElementById('signup-form');
     const loginForm = document.getElementById('login-form');
-
+    
     toggleButtons.forEach((button) => {
       button.addEventListener('click', () => {
         const target = button.getAttribute('data-target');
@@ -153,6 +162,27 @@
         }
       });
     });
+
+    function handleFormSubmit(event, formType) {
+      event.preventDefault();
+
+      Swal.fire({
+        title: `${formType} Successful!`,
+        text: `You have successfully ${formType.toLowerCase()}ed.`,
+        icon: 'success',
+        confirmButtonText: 'Ok'
+      });
+
+    }
+
+    signupForm.addEventListener('submit', function(event) {
+      handleFormSubmit(event, 'Sign Up');
+    });
+
+    loginForm.addEventListener('submit', function(event) {
+      handleFormSubmit(event, 'Log In');
+    });
   </script>
+  <script src="sweetalert2.all.min.js"></script>
 </body>
 </html>

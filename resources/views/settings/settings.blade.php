@@ -57,7 +57,6 @@
                         </div>
                     </div>
 
-                    <!-- Change Password Button -->
                     <div class="flex justify-center mt-10">
                         <button class="px-6 py-2 w-full bg-[#07222E] text-white font-medium rounded-lg">Save Settings</button>
                     </div>
@@ -66,16 +65,5 @@
         </div>
     </main>
 </body>
-
-<!-- <body class="flex bg-[#185863] h-screen">
-    <main class="flex flex-1 ml-40 items-center justify-center">
-        <div class="fixed bg-[#2A7886] rounded-lg shadow-lg flex flex-col p-8 space-x-6 w-full max-w-4xl">
-            <div class="flex flex-col items-center justify-center w-full">
-                <h2 class="text-white text-2xl font-bold mb-6 text-center">Settings</h2>
-                <hr class="border-t border-gray-300 mb-6 w-full">
-            </div>
-        </div>
-    </main>
-</body> -->
 
 @endsection

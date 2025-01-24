@@ -4,7 +4,6 @@
 <body class="bg-[#185863] font-sans leading-normal tracking-normal">
     <div class="max-w-lg mx-auto p-6 bg-[#F7F7F7] shadow-md rounded-lg justify-center my-8">
         <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">Know Yourself!</h1>
-        test
         <p>Sebelum mendapat planning silakan isi calculator dibawah ini</p>
 
         @if ($errors->any())
