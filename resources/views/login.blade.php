@@ -28,6 +28,7 @@
 
     <div class="relative">
 
+      <!-- Sign Up Form -->
       <form
         id="signup-form"
         action="/signup"
@@ -50,9 +51,7 @@
             id="signup-email"
             name="email"
             required
-            class="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-            aria-describedby="signup-email-error"/>
-          <span id="signup-email-error" class="text-red-500 text-sm hidden">Invalid email format.</span>
+            class="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"/>
         </div>
         <div class="mt-4">
           <label for="signup-password" class="block text-sm font-medium text-gray-600">Password</label>
@@ -61,9 +60,7 @@
             id="signup-password"
             name="password"
             required
-            class="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-            aria-describedby="signup-password-error"/>
-          <span id="signup-password-error" class="text-red-500 text-sm hidden">Password is required.</span>
+            class="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"/>
         </div>
         <button
           type="submit"
@@ -72,6 +69,7 @@
         </button>
       </form>
 
+      <!-- Login Form -->
       <form
         id="login-form"
         action="/login"
@@ -85,9 +83,7 @@
             id="login-email"
             name="email"
             required
-            class="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-            aria-describedby="login-email-error"/>
-          <span id="login-email-error" class="text-red-500 text-sm hidden">Invalid email format.</span>
+            class="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"/>
         </div>
         <div class="mt-4">
           <label for="login-password" class="block text-sm font-medium text-gray-600">Password</label>
@@ -96,9 +92,7 @@
             id="login-password"
             name="password"
             required
-            class="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-            aria-describedby="login-password-error"/>
-          <span id="login-password-error" class="text-red-500 text-sm hidden">Password is required.</span>
+            class="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"/>
         </div>
         <a
           href="#"
@@ -163,24 +157,109 @@
       });
     });
 
-    function handleFormSubmit(event, formType) {
+    loginForm.addEventListener('submit', async function(event) {
       event.preventDefault();
 
-      Swal.fire({
-        title: `${formType} Successful!`,
-        text: `You have successfully ${formType.toLowerCase()}ed.`,
-        icon: 'success',
-        confirmButtonText: 'Ok'
-      });
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+      if (!email || !password) {
+        Swal.fire({
+          title: 'Error!',
+          text: 'Email and password are required.',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        });
+        return;
+      }
 
-    }
+      try {
+        const response = await fetch('/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password }),
+        });
 
-    signupForm.addEventListener('submit', function(event) {
-      handleFormSubmit(event, 'Sign Up');
+        if (!response.ok) {
+          const errorData = await response.json();
+          Swal.fire({
+            title: 'Login Failed!',
+            text: errorData.message || 'Invalid email or password.',
+            icon: 'error',
+            confirmButtonText: 'OK',
+          });
+        } else {
+          Swal.fire({
+            title: 'Success!',
+            text: 'Login successful. Redirecting...',
+            icon: 'success',
+            confirmButtonText: 'OK',
+          }).then(() => {
+            window.location.href = '/main_page';
+          });
+        }
+      } catch (error) {
+        Swal.fire({
+          title: 'Error!',
+          text: 'An unexpected error occurred. Please try again later.',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        });
+      }
     });
 
-    loginForm.addEventListener('submit', function(event) {
-      handleFormSubmit(event, 'Log In');
+    signupForm.addEventListener('submit', async function(event) {
+      event.preventDefault();
+
+      const email = document.getElementById('signup-email').value;
+      const password = document.getElementById('signup-password').value;
+
+      if (!email || !password) {
+        Swal.fire({
+          title: 'Error!',
+          text: 'Email and password are required for signing up.',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        });
+        return;
+      }
+
+      try {
+        const response = await fetch('/signup', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password }),
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          Swal.fire({
+            title: 'Sign Up Failed!',
+            text: errorData.message || 'Unable to create account.',
+            icon: 'error',
+            confirmButtonText: 'OK',
+          });
+        } else {
+          Swal.fire({
+            title: 'Success!',
+            text: 'Sign-up successful. Redirecting...',
+            icon: 'success',
+            confirmButtonText: 'OK',
+          }).then(() => {
+            window.location.href = '/main_page';
+          });
+        }
+      } catch (error) {
+        Swal.fire({
+          title: 'Error!',
+          text: 'An unexpected error occurred. Please try again later.',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        });
+      }
     });
   </script>
   <script src="sweetalert2.all.min.js"></script>

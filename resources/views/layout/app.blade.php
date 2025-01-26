@@ -18,6 +18,8 @@
             ['name' => 'Notifications', 'link' => '#', 'icon' => 'chat'],
             ['name' => 'Profile', 'link' => '/profile', 'icon' => 'user'],
             ['name' => 'Settings', 'link' => '/settings', 'icon' => 'cog'],
+            ['name' => 'Create Recipe', 'link' => '/Form_resep', 'icon' => 'edit-alt'],
+            ['name' => 'planning', 'link' => '/planning', 'icon' => 'scatter-chart'],
             ]" />`
         @yield('content')
     </div>
