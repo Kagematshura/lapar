@@ -15,6 +15,7 @@ Route::get('/login', [LoginController::class, 'login'])->name('login');
 
 //mainPage
 Route::get('/main_page', [MainPageController::class, 'index'])->name('main.main_page');
+Route::get('/main_page/recipePreview', [MainPageController::class, 'recipePreview'])->name('main.preview');
 
 //profile
 Route::get('/profile', [ProfileController::class, 'index'])->name('pp.profile');

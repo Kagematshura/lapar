@@ -3,6 +3,7 @@
 
 <body class="bg-[#185863] font-sans leading-normal tracking-normal">
     <div class="max-w-lg mx-auto p-6 bg-[#F7F7F7] shadow-md rounded-lg justify-center my-8">
+
         @if (isset($bmi, $bbi, $kategori))
         {{-- Display Results --}}
         <div id="displayResult" class="mt-6 text-gray-800 p-6">
@@ -26,14 +27,32 @@
                     Berdasarkan data Anda (Gender: {{ $gender }}, Umur: {{ $umur }} tahun)
                 </p>
             </div>
-            <div class="mt-4 text-center">
-                <a
-                    href="{{route('plan.planning')}}"
-                    class="bg-[#185863] hover:bg-[#144E53] text-white font-medium py-2 px-6 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-green-500">
-                    Buat Planning
-                </a>
+
+            <div class="flex flex-cols-3">
+                <div class="mt-4 text-center">
+                    <a
+                        href="{{route('plan.planning')}}"
+                        class="bg-[#185863] hover:bg-[#144E53] text-white font-medium py-2 px-6 rounded-lg shadow-lg focus:outline-none">
+                        Turunkan
+                    </a>
+                </div>
+                <div class="mt-4 text-center">
+                    <a
+                        href="{{route('plan.planning')}}"
+                        class="bg-[#185863] hover:bg-[#144E53] text-white font-medium py-2 px-6 rounded-lg shadow-lg focus:outline-none">
+                        Jaga Stabilitas
+                    </a>
+                </div>
+                <div class="mt-4 text-center">
+                    <a
+                        href="{{route('plan.planning')}}"
+                        class="bg-[#185863] hover:bg-[#144E53] text-white font-medium py-2 px-6 rounded-lg shadow-lg focus:outline-none">
+                        Naikkan
+                    </a>
+                </div>
             </div>
         </div>
+
         @else
         {{-- Display Form --}}
         <div id="displayCount">
@@ -61,7 +80,7 @@
                         step="0.1"
                         required
                         value="{{ old('berat') }}"
-                        class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
+                        class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#0B4A7C]">
                 </div>
 
                 <div>
@@ -73,7 +92,7 @@
                         step="0.1"
                         required
                         value="{{ old('tinggi') }}"
-                        class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
+                        class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#0B4A7C]">
                 </div>
 
                 <div>
@@ -84,7 +103,7 @@
                         id="umur"
                         required
                         value="{{ old('umur') }}"
-                        class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
+                        class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#0B4A7C]">
                 </div>
 
                 <div>
@@ -93,7 +112,7 @@
                         name="gender"
                         id="gender"
                         required
-                        class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
+                        class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#0B4A7C]">
                         <option value="Laki-laki" {{ old('gender') == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
                         <option value="Perempuan" {{ old('gender') == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
                     </select>
@@ -102,7 +121,7 @@
                 <div class="text-center">
                     <button
                         type="submit"
-                        class="bg-[#0B4A7C] hover:bg-[#1b405f] text-white font-medium py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-green-500">
+                        class="bg-[#0B4A7C] hover:bg-[#1b405f] text-white font-medium py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-[#0B4A7C]">
                         Hitung
                     </button>
                 </div>
