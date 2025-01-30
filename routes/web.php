@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MainPageController;
@@ -35,3 +36,7 @@ Route::get('/planning', [CalculatorController::class, 'makePlanning'])->name('pl
 
 // Settings
 Route::get('/settings', [SettingsController::class, 'index'])->name('settings.settings');
+
+//admin
+Route::get('/admin/DataRecipe', [AdminController::class, 'AdminRecipe'])->name('admin.datarecipe');
+Route::get('/admin/DataImage', [AdminController::class, 'AdminImage'])->name('admin.dataimage');
