@@ -12,7 +12,7 @@ class CalculatorController extends Controller
         return view('plan.calculator');
     }
 
-    // Handle form submission
+    // Handle BMI and BMR calculation
     public function calculate(Request $request)
     {
         $request->validate([
@@ -28,6 +28,7 @@ class CalculatorController extends Controller
         $gender = $request->input('gender');
         $tinggi_m = $tinggi / 100;
 
+        // BMI Calculation
         $bmi = $berat / ($tinggi_m * $tinggi_m);
 
         if ($umur < 12) {
@@ -40,14 +41,23 @@ class CalculatorController extends Controller
             $bbi = $tinggi - 100 - (0.06 * ($tinggi - 100));
         }
 
+        // BMI Category
         $kategori = $gender === 'Laki-laki' ?
             ($bmi < 18.5 ? 'Kurus' : ($bmi < 24.9 ? 'Normal' : ($bmi < 29.9 ? 'Overweight' : 'Obesitas'))) :
             ($bmi < 17 ? 'Kurus' : ($bmi < 24 ? 'Normal' : ($bmi < 27 ? 'Overweight' : 'Obesitas')));
 
-        return view('plan.calculator', compact('bmi', 'bbi', 'kategori', 'gender', 'umur'));
+        // BMR Calculation
+        if ($gender === 'Laki-laki') {
+            $bmr = 88.36 + (13.4 * $berat) + (4.8 * $tinggi) - (5.7 * $umur);
+        } else {
+            $bmr = 447.6 + (9.2 * $berat) + (3.1 * $tinggi) - (4.3 * $umur);
+        }
+
+        return view('plan.calculator', compact('bmi', 'bbi', 'kategori', 'bmr', 'gender', 'umur'));
     }
 
-    public function makePlanning(){
+    public function makePlanning()
+    {
         return view('plan.planning');
     }
 }

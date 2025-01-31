@@ -126,7 +126,7 @@
     const toggleButtons = document.querySelectorAll('.toggle-button');
     const signupForm = document.getElementById('signup-form');
     const loginForm = document.getElementById('login-form');
-    
+
     toggleButtons.forEach((button) => {
       button.addEventListener('click', () => {
         const target = button.getAttribute('data-target');
