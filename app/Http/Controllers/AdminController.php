@@ -12,4 +12,7 @@ class AdminController extends Controller
     public function AdminImage(){
         return view("admin.dataimage");
     }
+    public function AdminUser(){
+        return view("admin.datauser");
+    }
 }

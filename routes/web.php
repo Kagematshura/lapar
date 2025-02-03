@@ -40,3 +40,4 @@ Route::get('/settings', [SettingsController::class, 'index'])->name('settings.se
 //admin
 Route::get('/admin/DataRecipe', [AdminController::class, 'AdminRecipe'])->name('admin.datarecipe');
 Route::get('/admin/DataImage', [AdminController::class, 'AdminImage'])->name('admin.dataimage');
+Route::get('/admin/DataUser', [AdminController::class, 'AdminUser'])->name('admin.datauser');
