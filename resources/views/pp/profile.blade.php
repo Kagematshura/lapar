@@ -9,7 +9,7 @@
 
             <div id="profile-display" class="flex space-x-7 items-center w-full">
                 <img
-                    src="https://via.placeholder.com/150"
+                    src="https://placehold.co/150"
                     alt="Profile Picture"
                     class="w-64 h-64 rounded-full shadow-lg">
                 <div class="flex flex-col text-white space-y-4">
@@ -25,7 +25,7 @@
 
             <div id="profile-edit" class="flex hidden w-full space-x-6 items-center">
                 <img
-                    src="https://via.placeholder.com/150"
+                    src="https://placehold.co/150"
                     alt="Profile Picture"
                     class="w-64 h-64 rounded-full shadow-lg">
                 <div class="flex-1 flex flex-col space-y-4 text-white">

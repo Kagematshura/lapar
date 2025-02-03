@@ -13,16 +13,17 @@
 
     <div class="flex">
         <x-sidebar :menu-items="[
-            ['name' => 'Explore', 'link' => '/main_page', 'icon' => 'edit'],
+            ['name' => 'Explore', 'link' => '/main_page', 'icon' => 'globe'],
             ['name' => 'Calculator', 'link' => '/calculator', 'icon' => 'calculator'],
-            ['name' => 'Notifications', 'link' => '#', 'icon' => 'chat'],
             ['name' => 'Profile', 'link' => '/profile', 'icon' => 'user'],
             ['name' => 'Settings', 'link' => '/settings', 'icon' => 'cog'],
             ['name' => 'Create Recipe', 'link' => '/Form_resep', 'icon' => 'edit-alt'],
-            ['name' => 'planning', 'link' => '/planning', 'icon' => 'scatter-chart'],
+            ['name' => 'Planning', 'link' => '/planning', 'icon' => 'scatter-chart'],
             ]" />`
-        @yield('content')
-    </div>
-
-</body>
-</html>
+            @yield('content')
+        </div>
+        
+    </body>
+    </html>
+    
+    <!-- ['name' => 'Notifications', 'link' => '#', 'icon' => 'chat'], -->
