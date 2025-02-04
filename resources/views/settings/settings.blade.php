@@ -43,7 +43,7 @@
                     <div class="space-y-4 mt-6">
                         <div class="flex items-center justify-between">
                             <label class="text-white text-4xl font-semibold block mb-2">Current Password</label>
-                            <input type="password" class="flex p-2 rounded-lg bg-gray-200 focus:outline-none">
+                            <div class="flex p-2 rounded-lg bg-gray-200 text-gray-800 font-medium focus:outline-none">*********</div>
                         </div>
                         <div class="flex items-center justify-between">
                             <label class="text-white text-4xl font-semibold block mb-2">Change Password</label>

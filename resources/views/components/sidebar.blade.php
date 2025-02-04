@@ -3,7 +3,7 @@
 <div class="flex h-screen">
     <aside class="w-64 bg-[#2A7886] text-white flex flex-col shadow-md shrink-0">
         <div class="p-4 font-bold text-xl border-b border-gray-600">
-            Sidebar Title
+            Sidebar
         </div>
         <nav class="p-4">
             <ul>

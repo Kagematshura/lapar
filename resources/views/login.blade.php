@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Login & Register</title>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   @vite('resources/css/app.css')
@@ -34,6 +35,7 @@
         action="/signup"
         method="POST"
         class="transition-all duration-300 transform opacity-100">
+        @csrf
         <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Sign Up</h2>
         <a
           href="#"
@@ -64,7 +66,7 @@
         </div>
         <button
           type="submit"
-          class="w-full px-4 py-2 mt-6 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">
+          class="w-full px-4 py-2 mt-6 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 disabled:bg-gray-50 disabled:border-gray-200 disabled:text-gray-500">
           Sign Up
         </button>
       </form>
@@ -75,6 +77,7 @@
         action="/login"
         method="POST"
         class="absolute top-0 left-0 w-full transition-all duration-300 transform opacity-0 -translate-x-full">
+        @csrf
         <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Log In</h2>
         <div class="mt-4">
           <label for="login-email" class="block text-sm font-medium text-gray-600">Email Address</label>
@@ -114,6 +117,7 @@
           <a href="#" class="text-sm text-blue-500 hover:underline">Forgot Password?</a>
         </div>
         <button
+          id="login-submit"
           type="submit"
           class="w-full px-4 py-2 mt-6 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">
           Log In
@@ -126,7 +130,10 @@
     const toggleButtons = document.querySelectorAll('.toggle-button');
     const signupForm = document.getElementById('signup-form');
     const loginForm = document.getElementById('login-form');
-
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    const submitButton = document.getElementById('login-submit');
+    submitButton.disabled = false;
+    
     toggleButtons.forEach((button) => {
       button.addEventListener('click', () => {
         const target = button.getAttribute('data-target');
@@ -160,6 +167,7 @@
     loginForm.addEventListener('submit', async function(event) {
       event.preventDefault();
 
+      submitButton.disabled = true;
       const email = document.getElementById('login-email').value;
       const password = document.getElementById('login-password').value;
       if (!email || !password) {
@@ -177,6 +185,7 @@
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': csrfToken,
           },
           body: JSON.stringify({ email, password }),
         });
@@ -206,6 +215,7 @@
           icon: 'error',
           confirmButtonText: 'OK',
         });
+        submitButton.disabled = false;
       }
     });
 
@@ -230,6 +240,7 @@
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': csrfToken,
           },
           body: JSON.stringify({ email, password }),
         });
@@ -262,6 +273,6 @@
       }
     });
   </script>
-  <script src="sweetalert2.all.min.js"></script>
+  <!-- <script src="sweetalert2.all.min.js"></script> -->
 </body>
 </html>

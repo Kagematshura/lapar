@@ -7,17 +7,25 @@ use App\Http\Controllers\MainPageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CalculatorController;
 use App\Http\Controllers\SettingsController;
-use App\Http\Controllers\FormResepController;
+use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\PlanningController;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
 //login
-Route::get('/login', [LoginController::class, 'login'])->name('login');
+Route::get('/login_page', [LoginController::class, 'view'])->name('login.page');
+Route::post('/signup', [LoginController::class, 'signup'])->name('login.signup');
+Route::post('/login', [LoginController::class, 'login'])->name('login.login');
+Route::post('/logout', [LoginController::class, 'logout'])->middleware('Login')->name('login.logout');
 
 //Resep
-Route::get('/Form_resep', [FormResepController::class, 'FormResep'])->name('resep.form_resep');
+Route::get('/recipe/create', [RecipeController::class, 'create'])->name('recipe.create');
+Route::post('/recipe/store', [RecipeController::class, 'store'])->name('recipe.store');
+// Route::get(uri: '/recipe', [RecipeController::class, 'index'])->name('recipe.main');
+Route::get('/recipe/{id}', [RecipeController::class, 'show'])->name('recipe.show');
+Route::delete('/recipe/{recipe}', [RecipeController::class, 'destroy'])->name('recipe.destroy');
 
 //mainPage
 Route::get('/main_page', [MainPageController::class, 'index'])->name('main.main_page');
@@ -25,6 +33,8 @@ Route::get('/main_page/recipePreview', [MainPageController::class, 'recipePrevie
 
 //profile
 Route::get('/profile', [ProfileController::class, 'index'])->name('pp.profile');
+Route::get('/profile', [ProfileController::class, 'show'])->middleware('auth');
+Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
 
 //calculator
 Route::get('/bmi-calculator', [CalculatorController::class, 'showForm'])->name('bmi.calculator');
