@@ -34,6 +34,22 @@
                 <h2 class="text-2xl font-semibold text-[#0B4A7C] mb-4">Calorie Information</h2>
                 <p>Total Kcal : {{ $recipe->total_kcal }}</p>
             </div>
+
+            <form action="{{ route('recipe.like', $recipe->id) }}" method="POST" style="display: inline-block;">
+                    @csrf
+                    <input type="hidden" name="like" value="1">
+                    <button type="submit" style="background: green; color: white; padding: 10px; border: none; cursor: pointer;">
+                        👍 Like
+                    </button>
+                </form>
+    
+                <form action="{{ route('recipe.like', $recipe->id) }}" method="POST" style="display: inline-block;">
+                    @csrf
+                    <input type="hidden" name="like" value="0">
+                    <button type="submit" style="background: red; color: white; padding: 10px; border: none; cursor: pointer;">
+                        👎 Dislike
+                    </button>
+                </form>
         </div>
 
     </div>

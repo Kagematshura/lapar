@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Planning;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CalculatorController extends Controller
 {
@@ -56,8 +58,23 @@ class CalculatorController extends Controller
         return view('plan.calculator', compact('bmi', 'bbi', 'kategori', 'bmr', 'gender', 'umur'));
     }
 
-    public function makePlanning()
-    {
-        return view('plan.planning');
+    public function indexPlanning(){
+        $planning = Planning::where('user_id', auth()->id())->get();
+
+        return view('plan.planning', compact('planning'));
+    }
+
+    public function storePlanning(Request $request) {    
+        $request->validate([
+            'kcal_intake' => 'required|numeric',
+        ]);
+
+        $planning = new Planning;
+        $planning->kcal_intake = $request->kcal_intake;
+        $planning->user_id = Auth::id();
+
+        $planning->save();
+
+    return redirect()->route('plan.planning')->with('success', 'Plans assigned.');
     }
 }

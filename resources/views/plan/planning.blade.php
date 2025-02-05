@@ -22,27 +22,31 @@
                 <h2 class="text-center text-lg font-bold mb-4">Put in Calorie Intake Quota Here</h2>
                 <hr class="mb-4">
                 <!-- Input Form -->
-                <div class="mb-4">
-                    <input type="text" id="calorieInput" placeholder="Enter Calorie Quota" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <button type="button" id="inputBtn" class="w-full py-2 px-4 mt-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <form id="planForm" class="mb-4" action="{{ route('store.planning') }}" method="POST">
+                    @csrf
+                    <input id="kcal_intake" name="kcal_intake" placeholder="Enter Calorie Quota" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <button id="submitBtn" type="submit" class="w-full py-2 px-4 mt-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
                         Input
                     </button>
-                </div>
+                </form>
                 <hr class="mb-4">
                 <!-- Table -->
                 <div class="overflow-x-auto">
                     <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-lg">
                         <thead>
                             <tr class="bg-blue-600 text-white">
-                                <th class="px-4 py-2 border">ID</th>
-                                <th class="px-4 py-2 border">USERNAME</th>
                                 <th class="px-4 py-2 border">CALORIE INTAKE</th>
                                 <th class="px-4 py-2 border">REGISTERED AT</th>
                             </tr>
                         </thead>
+                        @foreach ($planning as $plans)
                         <tbody id="calorieTableBody">
-                            <!-- Dynamic Rows will be added here -->
+                            <tr>
+                                <td class="px-4 py-2 border text-center">{{ $plans->kcal_intake }}</td>
+                                <td class="px-4 py-2 border text-center">{{ $plans->created_at }}</td>
+                            </tr>
                         </tbody>
+                        @endforeach
                     </table>
                 </div>
             </div>
@@ -50,6 +54,8 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <script>
         // Initialize Chart
         const ctx = document.getElementById('calorieChart').getContext('2d');
@@ -85,22 +91,27 @@
             }
         });
 
-        // Input and Table Script
-        document.getElementById('inputBtn').addEventListener('click', function () {
-            const calorieInput = document.getElementById('calorieInput').value;
-            if (calorieInput) {
-                const tableBody = document.getElementById('calorieTableBody');
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td class="px-4 py-2 border text-center">1</td>
-                    <td class="px-4 py-2 border text-center">John Doe</td>
-                    <td class="px-4 py-2 border text-center">${calorieInput}</td>
-                    <td class="px-4 py-2 border text-center">${new Date().toLocaleString()}</td>
-                `;
-                tableBody.appendChild(row);
-                document.getElementById('calorieInput').value = '';
+        document.getElementById('planForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const intakeKcal = document.getElementById('kcal_intake').value.trim();
+
+            if (intakeKcal) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: '',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    this.submit();
+                });
             } else {
-                alert('Please enter a valid calorie quota!');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal!',
+                    text: '',
+                    confirmButtonText: 'OK'
+                });
             }
         });
     </script>

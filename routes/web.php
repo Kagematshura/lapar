@@ -8,7 +8,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CalculatorController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\RecipeController;
-use App\Http\Controllers\PlanningController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,6 +25,7 @@ Route::post('/recipe/store', [RecipeController::class, 'store'])->name('recipe.s
 // Route::get(uri: '/recipe', [RecipeController::class, 'index'])->name('recipe.main');
 Route::get('/recipe/{id}', [RecipeController::class, 'show'])->name('recipe.show');
 Route::delete('/recipe/{recipe}', [RecipeController::class, 'destroy'])->name('recipe.destroy');
+Route::post('/recipe/{post}/like', [RecipeController::class, 'like'])->name('recipe.like');
 
 //mainPage
 Route::get('/main_page', [MainPageController::class, 'index'])->name('main.main_page');
@@ -42,7 +42,8 @@ Route::post('/bmi-calculator', [CalculatorController::class, 'calculate'])->name
 
 Route::get('/calculator', [CalculatorController::class, 'index'])->name('calculator.index');
 Route::post('/calculator/calculate', [CalculatorController::class, 'calculate'])->name('calculate.bmi');
-Route::get('/planning', [CalculatorController::class, 'makePlanning'])->name('plan.planning');
+Route::get('/planning', [CalculatorController::class, 'indexPlanning'])->name('plan.planning');
+Route::post('/planning/store', [CalculatorController::class, 'storePlanning'])->name('store.planning');
 
 // Settings
 Route::get('/settings', [SettingsController::class, 'index'])->name('settings.settings');

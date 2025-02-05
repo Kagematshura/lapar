@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\Recipe;
+use App\Models\Like;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RecipeController extends Controller
 {
@@ -55,5 +57,30 @@ class RecipeController extends Controller
     $recipe = Recipe::find($id);
 
     return view('resep.show', compact('recipe'));
+    }
+
+    public function like(Request $request, $id)
+    {
+        $recipe = Recipe::findOrFail($id);
+
+        $existingLike = Like::where('recipe_id', $id)
+                            ->where('user_id', Auth::id())
+                            ->first();
+
+        if ($existingLike) {
+            if ($existingLike->like == $request->like) {
+                $existingLike->delete();
+            } else {
+                $existingLike->update(['like' => $request->like]);
+            }
+        } else {
+            Like::create([
+                'user_id' => Auth::id(),
+                'post_id' => $id,
+                'like' => $request->like,
+            ]);
+        }
+
+        return redirect()->back();
     }
 }

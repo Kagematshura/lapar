@@ -132,7 +132,6 @@
     const loginForm = document.getElementById('login-form');
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     const submitButton = document.getElementById('login-submit');
-    submitButton.disabled = false;
     
     toggleButtons.forEach((button) => {
       button.addEventListener('click', () => {
@@ -167,7 +166,6 @@
     loginForm.addEventListener('submit', async function(event) {
       event.preventDefault();
 
-      submitButton.disabled = true;
       const email = document.getElementById('login-email').value;
       const password = document.getElementById('login-password').value;
       if (!email || !password) {
@@ -222,56 +220,83 @@
     signupForm.addEventListener('submit', async function(event) {
       event.preventDefault();
 
-      const email = document.getElementById('signup-email').value;
-      const password = document.getElementById('signup-password').value;
+      const email = document.getElementById('signup-email').value.trim();
+      const password = document.getElementById('signup-password').value.trim();
 
+      // Email validation function
+      function isValidEmail(email) {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          return emailRegex.test(email);
+      }
+
+      // Validation checks
       if (!email || !password) {
-        Swal.fire({
-          title: 'Error!',
-          text: 'Email and password are required for signing up.',
-          icon: 'error',
-          confirmButtonText: 'OK',
-        });
-        return;
+          Swal.fire({
+              title: 'Error!',
+              text: 'Email and password are required for signing up.',
+              icon: 'error',
+              confirmButtonText: 'OK',
+          });
+          return;
+      }
+
+      if (!isValidEmail(email)) {
+          Swal.fire({
+              title: 'Invalid Email!',
+              text: 'Please enter a valid email address.',
+              icon: 'error',
+              confirmButtonText: 'OK',
+          });
+          return;
+      }
+
+      if (password.length < 8) {
+          Swal.fire({
+              title: 'Weak Password!',
+              text: 'Password must be at least 8 characters long.',
+              icon: 'error',
+              confirmButtonText: 'OK',
+          });
+          return;
       }
 
       try {
-        const response = await fetch('/signup', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': csrfToken,
-          },
-          body: JSON.stringify({ email, password }),
-        });
+          const response = await fetch('/signup', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+                  'X-CSRF-TOKEN': csrfToken,
+              },
+              body: JSON.stringify({ email, password }),
+          });
 
-        if (!response.ok) {
-          const errorData = await response.json();
-          Swal.fire({
-            title: 'Sign Up Failed!',
-            text: errorData.message || 'Unable to create account.',
-            icon: 'error',
-            confirmButtonText: 'OK',
-          });
-        } else {
-          Swal.fire({
-            title: 'Success!',
-            text: 'Sign-up successful. Redirecting...',
-            icon: 'success',
-            confirmButtonText: 'OK',
-          }).then(() => {
-            window.location.href = '/main_page';
-          });
-        }
+          if (!response.ok) {
+              const errorData = await response.json();
+              Swal.fire({
+                  title: 'Sign Up Failed!',
+                  text: errorData.message || 'Unable to create account.',
+                  icon: 'error',
+                  confirmButtonText: 'OK',
+              });
+          } else {
+              Swal.fire({
+                  title: 'Success!',
+                  text: 'Sign-up successful. Redirecting...',
+                  icon: 'success',
+                  confirmButtonText: 'OK',
+              }).then(() => {
+                  window.location.href = '/login_page';
+              });
+          }
       } catch (error) {
-        Swal.fire({
-          title: 'Error!',
-          text: 'An unexpected error occurred. Please try again later.',
-          icon: 'error',
-          confirmButtonText: 'OK',
-        });
+          Swal.fire({
+              title: 'Error!',
+              text: 'An unexpected error occurred. Please try again later.',
+              icon: 'error',
+              confirmButtonText: 'OK',
+          });
       }
-    });
+  });
   </script>
   <!-- <script src="sweetalert2.all.min.js"></script> -->
 </body>

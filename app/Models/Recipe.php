@@ -11,5 +11,10 @@ class Recipe extends Model
     protected $fillable = [
         'recipe_name', 'description', 'ingredient', 'instruction', 'image', 'total_kcal', 'like_count', 'dislike_count'
     ];
-    protected $table = 'recipe';
+    protected $table = 'recipes';
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
 }

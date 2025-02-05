@@ -11,10 +11,8 @@ class ProfileController extends Controller
     }
     public function show()
     {
-        // Get the authenticated user
         $user = Auth::user();
 
-        // Pass the user data to the view
         return view('pp.profile', compact('user'));
     }
     public function update(Request $request) 
