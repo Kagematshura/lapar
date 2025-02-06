@@ -26,7 +26,6 @@
               <li class="mb-4"><a href="/admin/DataUser" class="block p-2 hover:bg-gray-700 rounded">Data User</a></li>
               <li class="mb-4"><a href="/admin/DataImage" class="block p-2 hover:bg-gray-700 rounded">Data Image</a></li>
               <li class="mb-4"><a href="/admin/DataRecipe" class="block p-2 hover:bg-gray-700 rounded">Data Recipe</a></li>
-              <li class="mb-4"><a href="#" class="block p-2 hover:bg-gray-700 rounded">Comments</a></li>
             </ul>
           </nav>
         </div>

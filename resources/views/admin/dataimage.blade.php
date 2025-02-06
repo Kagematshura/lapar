@@ -26,7 +26,6 @@
                             <li class="mb-4"><a href="/admin/DataUser" class="block p-2 hover:bg-gray-700 rounded">Data User</a></li>
                             <li class="mb-4"><a href="/admin/DataImage" class="block p-2 hover:bg-gray-700 rounded">Data Image</a></li>
                             <li class="mb-4"><a href="/admin/DataRecipe" class="block p-2 hover:bg-gray-700 rounded">Data Recipe</a></li>
-                            <li class="mb-4 relative"><a href="#" class="block p-2 hover:bg-gray-700 rounded">Comments</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -38,7 +37,7 @@
             <!-- Main Content -->
             <main class="flex-1 p-6">
                 <h2 class="text-2xl font-bold mb-4">DATA IMAGE</h2>
-                <div class="grid grid-cols-3 gap-4">
+                <div class="grid grid-cols-3 gap-3 ml-20">
                     <div class="w-64 h-40 bg-gray-700 rounded-lg overflow-hidden">
                         <img src="your-image-url1.jpg" alt="Image 1" class="w-full h-full object-cover">
                     </div>
