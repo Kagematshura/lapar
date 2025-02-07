@@ -8,45 +8,45 @@
         {{-- Display Results --}}
         <div id="displayResult" class="mt-6 text-gray-800 p-6 text-center">
             <h1 class="text-3xl font-bold text-[#185863] mb-4">Hasil Perhitungan</h1>
-            <p class="text-lg font-medium">
-                Kategori:
-                <span class="font-bold
-                    @if($kategori == 'Kurus') text-yellow-500
-                    @elseif($kategori == 'Normal') text-green-500
-                    @else text-red-500
-                    @endif">
-                    {{ $kategori }}
-                </span>
-            </p>
 
             {{-- Progress Bar --}}
-            <div class="relative w-full h-6 bg-gray-200 rounded-md overflow-hidden my-4">
+            <div class="relative w-full h-6 bg-gray-200 rounded-md overflow-hidden mt-4">
                 <div class="absolute top-0 left-0 h-full transition-all duration-500
-                    @if($kategori == 'Kurus') bg-yellow-400
-                    @elseif($kategori == 'Normal') bg-green-500
-                    @else bg-red-500
-                    @endif"
-                    style="width: {{ min(100, max(0, ($bmi / 40) * 100)) }}%;">
-                </div>
+                @if($kategori == 'Kurus') bg-yellow-400
+                @elseif($kategori == 'Normal') bg-green-500
+                @else bg-red-500
+                @endif"
+                style="width: {{ min(100, max(0, ($bmi / 40) * 100)) }}%;">
             </div>
+        </div>
+        <p class="text-lg font-medium">
+            Kategori:
+            <span class="font-bold
+                @if($kategori == 'Kurus') text-yellow-500
+                @elseif($kategori == 'Normal') text-green-500
+                @else text-red-500
+                @endif">
+                {{ $kategori }}
+            </span>
+        </p>
 
-            <p class="text-lg font-medium">
+            <p class="text-lg font-medium my-6">
                 <span class="text-2xl font-bold text-[#0B4A7C]">BMI Anda:</span>
                 <span class="text-[#F97316]">{{ number_format($bmi, 2) }}</span>
             </p>
 
-            <p class="text-lg font-medium mt-2">
+            <p class="text-lg font-medium my-6">
                 <span class="text-2xl font-bold text-[#0B4A7C]">Berat Badan Ideal:</span>
                 <span class="text-[#F97316]">{{ number_format($bbi, 2) }} kg</span>
             </p>
 
-            <p class="text-lg font-medium mt-2">
+            <p class="text-lg font-medium my-6">
                 <span class="text-2xl font-bold text-[#0B4A7C]">BMR Anda:</span>
                 <span class="text-[#F97316]">{{ number_format($bmr) }} kkal/hari</span>
             </p>
 
             {{-- Action Buttons --}}
-            <div class="flex flex-col gap-3 mt-6">
+            <div class="flex flex-col gap-3">
                 @foreach(['Turunkan', 'Jaga Stabilitas', 'Naikkan'] as $action)
                 <a href="{{ route('plan.planning') }}" class="bg-[#185863] hover:bg-[#144E53] text-white font-medium py-2 px-6 rounded-lg shadow-md text-center">
                     {{ $action }}
