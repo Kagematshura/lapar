@@ -8,7 +8,7 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   @vite('resources/css/app.css')
 </head>
-<body class="flex items-center justify-center min-h-screen bg-[#185863]">
+<body class="flex items-center justify-center min-h-screen bg-[#185863] font-poppins">
 
   <div class="w-full h-4/5 max-w-lg p-6 bg-[#E8F6F9] rounded-lg shadow-lg">
 
@@ -298,6 +298,5 @@
       }
   });
   </script>
-  <!-- <script src="sweetalert2.all.min.js"></script> -->
 </body>
 </html>

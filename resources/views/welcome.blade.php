@@ -1,5 +1,5 @@
 @vite('resources/css/app.css')
-<body class="flex items-center justify-center min-h-screen bg-[#185863]">
+<body class="flex items-center justify-center min-h-screen bg-[#185863] font-poppins">
   <div class="text-center">
     <h1 class="text-white text-5xl font-bold mb-4">Easy To Find Healthy Food</h1>
     <p class="text-white text-2xl mb-8">Get your stuff together</p>

@@ -3,8 +3,8 @@
 @section('content')
 <body class="flex bg-[#185863] h-screen">
 
-    <main class="flex flex-1 ml-40 items-center justify-center">
-        <div class="grid grid-cols-2 gap-6 w-full max-w-5xl">
+    <main class="flex flex-1 ml-40 items-center justify-center font-poppins">
+        <div class="ml-24 grid grid-cols-2 gap-10 w-full max-w-5xl">
             <!-- Chart Section -->
             <div class="col-span-1 bg-white p-6 rounded-lg shadow-lg">
                 <h2 class="text-center text-lg font-bold mb-4">PLANNING</h2>

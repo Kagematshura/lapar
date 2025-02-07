@@ -13,7 +13,7 @@
 </head>
 <body>
 
-    <div class="flex">
+    <div class="flex font-poppins">
         <x-sidebar :menu-items="[
             ['name' => 'Explore', 'link' => '/main_page', 'icon' => 'globe'],
             ['name' => 'Calculator', 'link' => '/calculator', 'icon' => 'calculator'],
@@ -21,7 +21,7 @@
             ['name' => 'Settings', 'link' => '/settings', 'icon' => 'cog'],
             ['name' => 'Create Recipe', 'link' => '/recipe/create', 'icon' => 'edit-alt'],
             ['name' => 'Planning', 'link' => '/planning', 'icon' => 'scatter-chart'],
-            ]" />`
+            ]"/>
             @yield('content')
         </div>
         

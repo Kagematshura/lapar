@@ -3,7 +3,7 @@
 @section('content')
 <body class="bg-[#185863]">
 
-    <div class="flex h-screen flex-col items-center p-6 space-y-8 w-full">
+    <div class="flex h-screen flex-col items-center p-6 space-y-8 w-full font-poppins">
 
         <div class="bg-gray-100 p-8 rounded-xl w-full h-full shadow-lg flex-1 overflow-y-auto">
             <h1 class="text-3xl font-semibold mb-4">Name</h1>

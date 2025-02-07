@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('content')
-<body class="flex bg-[#185863] h-screen">
+<body class="flex bg-[#185863] h-screen font-poppins">
 
     <main class="flex flex-1 ml-48 items-center">
         <div class=" ml-48 w-full max-w-lg p-6 bg-white rounded-lg shadow-lg fixed">

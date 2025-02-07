@@ -1,7 +1,7 @@
 @extends('layout.app')
 @section('content')
 
-<body class="bg-[#185863] font-sans leading-normal tracking-normal">
+<body class="bg-[#185863] font-sans leading-normal tracking-normal font-poppins">
     <div class="max-w-lg mx-auto p-6 bg-[#F7F7F7] shadow-md rounded-lg my-8">
 
         @if (isset($bmi, $bbi, $kategori, $bmr))

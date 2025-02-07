@@ -13,6 +13,8 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                dosis:["dosis","sans-serif"],
+                poppins:["poppins","dosis","PT serif"],
             },
         },
     },

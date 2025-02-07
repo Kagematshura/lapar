@@ -6,7 +6,7 @@
     <title>Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-800 text-white">
+<body class="bg-gray-800 text-white font-poppins">
     <div class="flex h-screen flex-col">
         <!-- Navbar -->
         <nav class="w-full bg-gray-900 p-4 flex justify-between items-center">

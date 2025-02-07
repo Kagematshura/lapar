@@ -2,7 +2,7 @@
 @section('content')
 
 <body class="flex bg-[#185863] h-screen">
-    <main class="flex flex-1 ml-40 items-center">
+    <main class="flex flex-1 ml-40 items-center font-poppins">
         <div class="fixed bg-[#2A7886] rounded-lg shadow-lg flex p-8 space-x-6 w-full max-w-4xl">
             <div class="flex flex-col items-center justify-center w-full">
                 <div class="w-full text-center mb-3">
