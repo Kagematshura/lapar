@@ -48,19 +48,14 @@
               </tr>
             </thead>
             <tbody>
+              @foreach ($users as $user)
               <tr>
-                <td class="p-2 border-b">1</td>
-                <td class="p-2 border-b">Budi Santoso</td>
-                <td class="p-2 border-b">budi@example.com</td>
-                <td class="p-2 border-b">2024-01-15</td>
+                <td class="p-2 border-b">{{ $user->id }}</td>
+                <td class="p-2 border-b">{{ $user->name }}</td>
+                <td class="p-2 border-b">{{ $user->email }}</td>
+                <td class="p-2 border-b">{{ $user->created_at }}</td>
               </tr>
-              <tr class="bg-gray-600">
-                <td class="p-2 border-b">2</td>
-                <td class="p-2 border-b">Siti Aminah</td>
-                <td class="p-2 border-b">siti@example.com</td>
-                <td class="p-2 border-b">2024-02-01</td>
-              </tr>
-              <!-- Tambahkan baris data user lainnya sesuai kebutuhan -->
+              @endforeach
             </tbody>
           </table>
         </div>

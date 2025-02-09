@@ -22,8 +22,8 @@ class RecipeController extends Controller
         $request->validate([
             'recipe_name' => 'required|max:255',
             'description' => 'required|max:255',
-            'ingredient' => 'required|max:255',
-            'instruction' => 'required|max:255',
+            'ingredient' => 'required|string',
+            'instruction' => 'required|string',
             'total_kcal' => 'required|numeric',
             'image'     => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -76,7 +76,7 @@ class RecipeController extends Controller
         } else {
             Like::create([
                 'user_id' => Auth::id(),
-                'post_id' => $id,
+                'recipe_id' => $id,
                 'like' => $request->like,
             ]);
         }
