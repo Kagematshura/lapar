@@ -13,26 +13,26 @@
 
             <div class="mb-8">
                 <h2 class="text-2xl font-semibold text-[#0B4A7C] mb-4">Description</h2>
-                <p>{{ $recipe->description }}</p>
+                <p class="text-lg">{{ $recipe->description }}</p>
             </div>
 
             <div class="mb-8">
                 <h2 class="text-2xl font-semibold text-[#0B4A7C] mb-4">Ingredients</h2>
-                <ul class="list-disc pl-6 mt-4 text-lg">
+                <ul class="pl-6 mt-4 text-lg">
                     {!! $recipe->ingredient !!}
                 </ul>
             </div>
 
             <div class="mb-8">
                 <h2 class="text-2xl font-semibold text-[#0B4A7C] mb-4">Instructions</h2>
-                <ol class="list-decimal pl-6 mt-4 text-lg space-y-2">
+                <ol class="pl-6 mt-4 text-lg space-y-2">
                     {!! $recipe->instruction !!}
                 </ol>
             </div>
 
             <div class="mb-8">
                 <h2 class="text-2xl font-semibold text-[#0B4A7C] mb-4">Calorie Information</h2>
-                <p>Total Kcal : {{ $recipe->total_kcal }}</p>
+                <p class="text-lg">Total Kcal : {{ $recipe->total_kcal }}</p>
             </div>
 
             <form action="{{ route('recipe.like', $recipe->id) }}" method="POST" style="display: inline-block;">

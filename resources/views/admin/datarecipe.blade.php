@@ -46,14 +46,16 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($recipes as $recipe)
                             <tr>
-                                <td class="p-2 border-b">1</td>
-                                <td class="p-2 border-b">Example Recipe</td>
-                                <td class="p-2 border-b">250</td>
-                                <td class="p-2 border-b">15</td>
-                                <td class="p-2 border-b">2</td>
-                                <td class="p-2 border-b">2024-01-30</td>
+                                <td class="p-2 border-b">{{ $recipe->id }}</td>
+                                <td class="p-2 border-b">{{ $recipe->recipe_name }}</td>
+                                <td class="p-2 border-b">{{ $recipe->total_kcal }}</td>
+                                <td class="p-2 border-b">{{ $recipe->like_count }}</td>
+                                <td class="p-2 border-b">{{ $recipe->dislike_count }}</td>
+                                <td class="p-2 border-b">{{ $recipe->created_at }}</td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
