@@ -1,11 +1,11 @@
 @extends('layout.app')
 
 @section('content')
-<body class="bg-[#185863]">
+<body class="bg-[#185863] font-poppins">
 
     <div class="flex h-screen overflow-auto">
 
-        <div class="flex flex-col flex-1 font-poppins">
+        <div class="flex flex-col flex-1">
 
                     <!-- Top Banner Carousel -->
             <div class="w-full relative">
