@@ -7,30 +7,17 @@
 
         <div class="flex flex-col flex-1">
 
-                    <!-- Top Banner Carousel -->
+            <!-- Top Banner Carousel -->
             <div class="w-full relative">
                 <div class="carousel w-full h-64 overflow-hidden relative">
-                    <!-- Slide 1 -->
+                    @foreach ($caroimage as $images)
                     <div class="carousel-item w-full h-full">
                         <img
-                            src="https://placehold.co/1920x300?text=Slide+1"
+                            src="{{ asset('storage/' . $images->image_path) ?? 'https://placehold.co/1920x300?text=Slide+1'}}"
                             alt="Slide 1"
-                            class="w-full h-full object-cover">
+                            class="w-[1920px] h-[300px] object-cover">
                     </div>
-                    <!-- Slide 2 -->
-                    <div class="carousel-item w-full h-full hidden">
-                        <img
-                            src="https://placehold.co/1920x300?text=Slide+2"
-                            alt="Slide 2"
-                            class="w-full h-full object-cover">
-                    </div>
-                    <!-- Slide 3 -->
-                    <div class="carousel-item w-full h-full hidden">
-                        <img
-                            src="https://placehold.co/1920x300?text=Slide+3"
-                            alt="Slide 3"
-                            class="w-full h-full object-cover">
-                    </div>
+                    @endforeach
                 </div>
                 <!-- Controls -->
                 <div class="absolute inset-0 flex items-center justify-between px-4">
@@ -56,20 +43,6 @@
                     onclick="#"
                     class="bg-[#0B4A7C] px-6 py-2 ml-6 text-white rounded-lg shadow-lg hover:bg-[#1b405f]">Search</button>
                 </div>
-
-                {{-- <div class="flex items-center justify-center w-full p-4 space-x-4">
-                    @foreach ($recipe as $recipes)
-                    <div class="bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105">
-                        <div class="bg-gray-300 w-64 h-64 flex flex-col items-center justify-center rounded-lg relative group">
-                        <img src="{{ asset('storage/' . $recipes->image) ?? 'https://placehold.co/400' }}"
-                            alt="Food Image" class="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-300 ease-in-out">
-                            <div class="absolute bottom-0 bg-black bg-opacity-50 w-full text-white text-center py-2 rounded-b-lg">
-                                <a href="{{ route('recipe.show', $recipes->id) }}" class="font-semibold hover:text-[#1b405f]">{{ $recipes->recipe_name }}</a>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                </div> --}}
                 </div>
 
                 <!-- Recently Uploaded by You Section -->
@@ -108,7 +81,6 @@
                         @endforeach
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

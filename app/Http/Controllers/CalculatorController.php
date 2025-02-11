@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Planning;
-
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -58,6 +58,26 @@ class CalculatorController extends Controller
         return view('plan.calculator', compact('bmi', 'bbi', 'kategori', 'bmr', 'gender', 'umur'));
     }
 
+    public function getWeeklyData()
+    {
+        $startOfWeek = Carbon::now('Asia/Jakarta')->startOfWeek();
+        $endOfWeek = Carbon::now('Asia/Jakarta')->endOfWeek();
+    
+        // Log::info("Fetching data from: $startOfWeek to $endOfWeek");
+    
+        $weekData = Planning::whereBetween('created_at', [$startOfWeek, $endOfWeek])
+            ->orderBy('created_at')
+            ->get();
+    
+        // Log::info("Retrieved data:", $weekData->toArray());
+    
+        return response()->json($weekData->map(function ($entry) {
+            return [
+                'date' => Carbon::parse($entry->created_at)->format('Y-m-d'),
+                'nominal' => $entry->kcal_intake,
+            ];
+        }));
+    }
     public function indexPlanning(){
         $planning = Planning::where('user_id', auth()->id())->get();
 

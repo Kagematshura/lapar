@@ -12,7 +12,7 @@
                 <div class="flex justify-center">
                     <!-- Chart Placeholder -->
                     <div class="w-[90%] h-64">
-                        <canvas id="calorieChart"></canvas>
+                    <canvas id="calorieChart"></canvas>
                     </div>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                         <tbody id="calorieTableBody">
                             <tr>
                                 <td class="px-4 py-2 border text-center">{{ $plans->kcal_intake }}</td>
-                                <td class="px-4 py-2 border text-center">{{ $plans->created_at }}</td>
+                                <td class="px-4 py-2 border text-center">{{ $plans->created_at->timezone('Asia/Jakarta') }}</td>
                             </tr>
                         </tbody>
                         @endforeach
@@ -55,41 +55,96 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
     <script>
         // Initialize Chart
-        const ctx = document.getElementById('calorieChart').getContext('2d');
-        const calorieChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'],
-                datasets: [{
-                    label: 'Calorie Intake',
-                    data: [4000, 1000, 1150, 2000, 1500, 3000, 2500],
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 2,
-                    pointBackgroundColor: 'rgba(54, 162, 235, 1)'
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        enabled: true
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 4000
-                    }
-                }
+        document.addEventListener("DOMContentLoaded", function () {
+    const ctx = document.getElementById("calorieChart").getContext("2d");
+
+    // Function to get table data dynamically
+    function getTableData() {
+        let labels = [];
+        let data = [];
+
+        document.querySelectorAll("#calorieTableBody tr").forEach((row) => {
+            let kcalIntake = row.cells[0].innerText.trim();
+            let dateTime = row.cells[1].innerText.trim();
+
+            if (kcalIntake && dateTime) {
+                let dateOnly = dateTime.split(" ")[0]; // Extract only 'YYYY-MM-DD'
+                let formattedDate = formatDate(dateOnly); // Convert to 'MM-DD'
+                labels.push(formattedDate);
+                data.push(parseInt(kcalIntake, 10)); // Convert to integer
             }
         });
+
+        return { labels, data };
+    }
+
+    // Function to format 'YYYY-MM-DD' -> 'MM-DD'
+    function formatDate(isoDate) {
+        let dateParts = isoDate.split("-");
+        return `${dateParts[1]}-${dateParts[2]}`; // Extract MM-DD
+    }
+
+    // Function to determine dynamic Y-axis max value
+    function getDynamicMax(data) {
+        let maxValue = Math.max(...data, 100); // Ensure there's at least a base value
+        return maxValue + 100; // Add 100 over the highest value
+    }
+
+    // Get initial table data
+    let { labels, data } = getTableData();
+
+    // Initialize Chart
+    let calorieChart = new Chart(ctx, {
+        type: "line",
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: "Calorie Intake",
+                    data: data,
+                    backgroundColor: "rgba(54, 162, 235, 0.2)",
+                    borderColor: "rgba(54, 162, 235, 1)",
+                    borderWidth: 2,
+                    pointBackgroundColor: "rgba(54, 162, 235, 1)",
+                },
+            ],
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: false },
+                tooltip: { enabled: true },
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    suggestedMax: getDynamicMax(data), // Set max dynamically
+                },
+            },
+        },
+    });
+
+    // Function to update the chart dynamically
+    function updateChart() {
+        let { labels, data } = getTableData();
+
+        calorieChart.data.labels = labels;
+        calorieChart.data.datasets[0].data = data;
+        calorieChart.options.scales.y.suggestedMax = getDynamicMax(data); // Update max Y dynamically
+        calorieChart.update();
+    }
+
+    // Update chart when form is submitted
+    document.getElementById("planForm").addEventListener("submit", function (event) {
+        setTimeout(updateChart, 1000); // Delay update to allow the table to refresh
+    });
+
+    // Initial chart update
+    updateChart();
+});
+
 
         document.getElementById('planForm').addEventListener('submit', function (e) {
             e.preventDefault();

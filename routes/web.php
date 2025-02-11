@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CalculatorController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\CaroImageController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -42,6 +43,7 @@ Route::post('/bmi-calculator', [CalculatorController::class, 'calculate'])->name
 
 Route::get('/calculator', [CalculatorController::class, 'index'])->name('calculator.index');
 Route::post('/calculator/calculate', [CalculatorController::class, 'calculate'])->name('calculate.bmi');
+Route::get('/calorie-data', [CalculatorController::class, 'getWeeklyData']);
 Route::get('/planning', [CalculatorController::class, 'indexPlanning'])->name('plan.planning');
 Route::post('/planning/store', [CalculatorController::class, 'storePlanning'])->name('store.planning');
 
@@ -50,5 +52,10 @@ Route::get('/settings', [SettingsController::class, 'index'])->name('settings.se
 
 //admin
 Route::get('/admin/DataRecipe', [AdminController::class, 'AdminRecipe'])->name('admin.datarecipe');
-Route::get('/admin/DataImage', [AdminController::class, 'AdminImage'])->name('admin.dataimage');
+
+Route::get('/admin/DataImage', [CaroImageController::class, 'showUploadForm'])->name('admin.dataimage');
+Route::post('/upload-image', [CaroImageController::class, 'uploadCaroImage'])->name('upload.caroimage');
+Route::delete('/delete-image/{id}', [CaroImageController::class, 'deleteCaroImage'])->name('delete.caroimage');
+
 Route::get('/admin/DataUser', [AdminController::class, 'AdminUser'])->name('admin.datauser');
+
