@@ -1,18 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
+use App\Models\Recipe;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
     public function AdminRecipe(){
-        return view("admin.datarecipe");
+        $recipes = Recipe::all();
+        return view("admin.datarecipe", compact('recipes'));
     }
     public function AdminImage(){
         return view("admin.dataimage");
     }
     public function AdminUser(){
-        return view("admin.datauser");
+        $users = User::all();
+        return view("admin.datauser", compact('users'));
     }
 }

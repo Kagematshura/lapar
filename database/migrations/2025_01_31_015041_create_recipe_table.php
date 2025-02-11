@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('recipe_name');
             $table->string('description');
-            $table->string('ingredient');
-            $table->string('instruction');
+            $table->longText('ingredient');
+            $table->longText('instruction');
             $table->string('total_kcal');
             $table->integer('like_count')->nullable();
             $table->integer('dislike_count')->nullable();
