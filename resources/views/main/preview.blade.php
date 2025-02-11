@@ -6,7 +6,7 @@
     <div class="flex h-screen flex-col items-center p-6 space-y-8 w-full font-poppins">
 
         <div class="bg-gray-100 p-8 rounded-xl w-full h-full shadow-lg flex-1 overflow-y-auto">
-            <h1 class="text-3xl font-semibold mb-4">Name</h1>
+            <h1 class="text-3xl  font-semibold mb-4">Name</h1>
             <div class="w-full mb-6">
                 <img src="https://placehold.co/150" alt="thumbnail" class="w-full h-80 object-cover rounded-lg shadow-md">
             </div>

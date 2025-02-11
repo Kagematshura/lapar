@@ -6,46 +6,45 @@
     <main class="flex flex-1 ml-48 items-center">
         <div class=" ml-48 w-full max-w-lg p-6 bg-white rounded-lg shadow-lg fixed">
             <h1 class="text-center text-lg font-bold mb-4">Resep</h1>
-            <form id="resepForm" class="space-y-4 overflow-y-auto" action="{{route('recipe.store')}}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="mb-4 form-group">
-                <label for="recipe_name" class="block text-sm font-medium text-gray-700">Nama Resep</label>
-                <input type="text" name="recipe_name" id="recipe_name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
-            </div>
+            <form id="resepForm" class="space-y-4" action="{{route('recipe.store')}}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="mb-4">
+                    <label for="recipe_name" class="block text-sm font-medium text-gray-700">Nama Resep</label>
+                    <input type="text" name="recipe_name" id="recipe_name" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required>
+                </div>
 
-            <div class="mb-4 form-group">
-                <label for="description" class="block text-sm font-medium text-gray-700">Deskripsi</label>
-                <input name="description" id="description" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
-            </div>
+                <div class="mb-4">
+                    <label for="description" class="block text-sm font-medium text-gray-700">Deskripsi</label>
+                    <textarea name="description" id="description" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required></textarea>
+                </div>
 
-            <div class="mb-4 form-group">
-                <label for="editor_ingredient" class="block text-sm font-medium text-gray-700">Bahan - bahan</label>
-                <div id="editor_ingredient" style="height: 100px;" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required></div>
-                <textarea name="ingredient" id="ingredient" style="display:none;"></textarea>
-            </div>
+                <div class="mb-4">
+                    <label for="editor_ingredient" class="block text-sm font-medium text-gray-700">Bahan - bahan</label>
+                    <div id="editor_ingredient" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm bg-gray-100 min-h-[100px]" required></div>
+                    <textarea name="ingredient" id="ingredient" style="display:none;"></textarea>
+                </div>
 
-            <div class="mb-4 form-group">
-                <label for="instruction" class="block text-sm font-medium text-gray-700">Cara Membuat</label>
-                <div id="editor_instruction" style="height: 100px;" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required></div>
-                <textarea name="instruction" id="instruction" style="display:none;"></textarea>
-            </div>
+                <div class="mb-4">
+                    <label for="editor_instruction" class="block text-sm font-medium text-gray-700">Cara Membuat</label>
+                    <div id="editor_instruction" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm bg-gray-100 min-h-[100px]" required></div>
+                    <textarea name="instruction" id="instruction" style="display:none;"></textarea>
+                </div>
 
-            <div class="mb-4 form-group">
-                <label for="total_kcal" class="block text-sm font-medium text-gray-700">Total Kalori</label>
-                <input name="total_kcal" id="total_kcal" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
-            </div>
+                <div class="mb-4">
+                    <label for="total_kcal" class="block text-sm font-medium text-gray-700">Total Kalori</label>
+                    <input name="total_kcal" id="total_kcal" type="number" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required>
+                </div>
 
-            <div class="mb-4 form-group">
-                <label for="image" class="block text-sm font-medium text-gray-700">Gambar</label>
-                <input type="file" name="image" id="image" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
-            </div>
+                <div class="mb-4">
+                    <label for="image" class="block text-sm font-medium text-gray-700">Gambar</label>
+                    <input type="file" name="image" id="image" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm bg-white file:bg-green-500 file:text-white file:border-none file:px-4 file:py-2 file:rounded-md file:cursor-pointer hover:file:bg-green-600" required>
+                </div>
 
-                <!-- Submit Button -->
-            <div class="text-center">
-                <button type="submit" id="submitBtn" class="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    Input
-                </button>
-            </div>
+                <div class="text-center">
+                    <button type="submit" id="submitBtn" class="w-full py-2 px-4 bg-[#0B4A7C] hover:bg-[#1b405f] text-white font-semibold rounded-md focus:ring-2">
+                        Input Resep
+                    </button>
+                </div>
             </form>
         </div>
     </main>
