@@ -12,7 +12,7 @@
             <hr class="border-t border-gray-400 mb-6 w-full">
             <div class="flex flex-col md:flex-row items-center md:items-start md:space-x-6">
                 <div class="w-full md:w-1/2 flex justify-center">
-                    <img src="{{ asset('storage/' . $recipe->image) ?? 'https://placehold.co/150' }}" alt="thumbnail" class="w-auto h-auto object-cover rounded-lg shadow-md">
+                    <img src="{{ asset('storage/' . $recipe->image) ?? 'https://placehold.co/150' }}" alt="thumbnail" class="w-auto h-96 object-cover rounded-lg shadow-md">
                 </div>
                 <div class="w-full md:w-1/2">
                     <h2 class="text-2xl font-semibold text-[#0B4A7C] mb-4">Description</h2>
