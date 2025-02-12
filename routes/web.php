@@ -20,6 +20,8 @@ Route::post('/signup', [LoginController::class, 'signup'])->name('login.signup')
 Route::post('/login', [LoginController::class, 'login'])->name('login.login');
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('Login')->name('login.logout');
 
+Route::get('/login_test', [LoginController::class, 'loginTest'])->name('login.test');
+
 //Resep
 Route::get('/recipe/create', [RecipeController::class, 'create'])->name('recipe.create');
 Route::post('/recipe/store', [RecipeController::class, 'store'])->name('recipe.store');

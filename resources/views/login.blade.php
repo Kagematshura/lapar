@@ -44,7 +44,7 @@
             src="https://www.svgrepo.com/show/355037/google.svg"
             alt="Google Logo"
             class="w-5 h-5 mr-2"/>
-          Continue with Google
+          Sign up with Google
         </a>
         <div class="mt-4">
           <label for="signup-email" class="block text-sm font-medium text-gray-600">Email Address</label>
@@ -132,7 +132,7 @@
     const loginForm = document.getElementById('login-form');
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     const submitButton = document.getElementById('login-submit');
-    
+
     toggleButtons.forEach((button) => {
       button.addEventListener('click', () => {
         const target = button.getAttribute('data-target');

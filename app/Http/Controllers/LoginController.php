@@ -51,4 +51,8 @@ class LoginController extends Controller
         Auth::logout();
         return response()->json(['message' => 'Logged out']);
     }
+
+    public function loginTest(){
+        return view('login_test');
+    }
 }
