@@ -45,8 +45,8 @@ Route::post('/bmi-calculator', [CalculatorController::class, 'calculate'])->name
 
 Route::get('/calculator', [CalculatorController::class, 'index'])->name('calculator.index');
 Route::post('/calculator/calculate', [CalculatorController::class, 'calculate'])->name('calculate.bmi');
-Route::get('/calorie-data', [CalculatorController::class, 'getWeeklyData']);
 Route::get('/planning', [CalculatorController::class, 'indexPlanning'])->name('plan.planning');
+Route::get('/calorie-data', [CalculatorController::class, 'getWeeklyData']);
 Route::post('/planning/store', [CalculatorController::class, 'storePlanning'])->name('store.planning');
 
 // Settings

@@ -9,30 +9,30 @@
 
             <!-- Top Banner Carousel -->
             <div class="w-full relative">
-                <div class="carousel w-full h-64 overflow-hidden relative">
-                    @foreach ($caroimage as $images)
+            <div class="carousel w-full h-64 overflow-hidden relative">
+                @foreach ($caroimage as $images)
                     <div class="carousel-item w-full h-full">
                         <img
-                            src="{{ asset('storage/' . $images->image_path) ?? 'https://placehold.co/1920x300?text=Slide+1'}}"
-                            alt="Slide 1"
+                            src="{{ $images->image_path ? asset('storage/' . $images->image_path) : 'https://placehold.co/1920x300?text=Slide+1' }}"
+                            alt="Slide"
                             class="w-[1920px] h-[300px] object-cover">
                     </div>
-                    @endforeach
-                </div>
-                <!-- Controls -->
-                <div class="absolute inset-0 flex items-center justify-between px-4">
-                    <button id="prev" class="bg-white rounded-full p-2 shadow hover:bg-gray-200">
-                        <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                        </svg>
-                    </button>
-                    <button id="next" class="bg-white rounded-full p-2 shadow hover:bg-gray-200">
-                        <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </button>
-                </div>
+                @endforeach
             </div>
+            <!-- Controls -->
+            <div class="absolute inset-0 flex items-center justify-between px-4">
+                <button id="prev" class="bg-white rounded-full p-2 shadow hover:bg-gray-200">
+                    <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+                <button id="next" class="bg-white rounded-full p-2 shadow hover:bg-gray-200">
+                    <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
 
             <div class="flex-1 flex flex-col items-center justify-center">
 
@@ -49,18 +49,17 @@
                 <div class="w-full px-10">
                     <h2 class="text-white text-2xl font-bold mb-4">Recently Uploaded by You</h2>
                     <div class="flex items-center justify-start w-full p-4 flex-wrap gap-4">
-                        {{-- @foreach ($recentUploads as $upload) --}}
+                        @foreach ($recentUploads as $upload)
                         <div class="bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105">
                             <div class="bg-gray-300 w-64 h-64 flex flex-col items-center justify-center rounded-lg relative group">
-                                {{-- <img src="{{ asset('storage/' . $upload->image) ?? 'https://placehold.co/400' }}" --}}
-                                <img src="#"
-                                    alt="Food Image" class="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-300 ease-in-out">
-                                <div class="absolute bottom-0 bg-black bg-opacity-50 w-full text-white text-center py-2 rounded-b-lg">
-                                    <a href="#" class="font-semibold hover:text-[#1b405f]">Tahu Gejrot</a>
-                                </div>
+                                <img src="{{ asset('storage/' . $upload->image) ?? 'https://placehold.co/400' }}"
+                                        alt="Food Image" class="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-300 ease-in-out">
+                                    <div class="absolute bottom-0 bg-black bg-opacity-50 w-full text-white text-center py-2 rounded-b-lg">
+                                        <a href="{{ route('recipe.show', $upload->id) }}" class="font-semibold hover:text-[#1b405f]">{{ $upload->recipe_name }}</a>
+                                    </div>
                             </div>
                         </div>
-                        {{-- @endforeach --}}
+                        @endforeach
                     </div>
                 </div>
 

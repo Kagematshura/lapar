@@ -117,65 +117,157 @@
         });
 
 
-        // Listen for the form's submit event
-        document.getElementById('resepForm').addEventListener('submit', function (e) {
-            e.preventDefault(); // Prevent the default form submission
-
-            // Update hidden textareas with the HTML content from Quill editors
-            document.getElementById('ingredient').value = quillIngredient.root.innerHTML;
-            document.getElementById('instruction').value = quillInstruction.root.innerHTML;
-
-            // Get the values from all form fields
-            const namaResep = document.getElementById('recipe_name').value.trim();
-            const deskripsi = document.getElementById('description').value.trim();
-            const bahan = document.getElementById('ingredient').value.trim();
-            const cara = document.getElementById('instruction').value.trim();
-            const kalori = document.getElementById('total_kcal').value.trim();
-
-            // Simple validation to ensure all fields are filled
-            if (namaResep && deskripsi && bahan && cara && kalori) {
-                // Show a success message and then submit the form when confirmed
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Berhasil!',
-                    text: 'Data berhasil diupload!',
-                    confirmButtonText: 'OK'
-                }).then(() => {
-                    this.submit();
-                });
-            } else {
-                // Show an error message if any field is missing
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Gagal!',
-                    text: 'Mohon isi semua field sebelum mengupload!',
-                    confirmButtonText: 'OK'
-                });
-            }
-        });
-
-        // IMG handlers
         document.getElementById('image').addEventListener('change', function(event) {
-        const file = event.target.files[0];
-        const preview = document.getElementById('imagePreview');
-        const placeholderText = document.getElementById('placeholderText');
+    const file = event.target.files[0];
+    const preview = document.getElementById('imagePreview');
+    const placeholderText = document.getElementById('placeholderText');
 
-        if (file) {
-            const reader = new FileReader();
-
-            reader.onload = function(e) {
-                preview.src = e.target.result;
-                preview.style.display = 'block'; // Show the image preview
-                placeholderText.style.display = 'none'; // Hide the placeholder text
-            };
-
-            reader.readAsDataURL(file);
-        } else {
+    if (file) {
+        // Validate file size (5MB max)
+        if (file.size > 5 * 1024 * 1024) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Ukuran gambar terlalu besar!',
+                text: 'Maksimum ukuran gambar yang diperbolehkan adalah 5MB.',
+                confirmButtonText: 'OK'
+            });
+            this.value = ''; // Reset the file input
             preview.src = '';
-            preview.style.display = 'none'; // Hide the image preview
-            placeholderText.style.display = 'block'; // Show the placeholder text
+            preview.style.display = 'none';
+            placeholderText.style.display = 'block';
+            return;
+        }
+
+        // Preview the selected image
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+            preview.style.display = 'block'; // Show preview
+            placeholderText.style.display = 'none'; // Hide placeholder
+        };
+        reader.readAsDataURL(file);
+    } else {
+        preview.src = '';
+        preview.style.display = 'none';
+        placeholderText.style.display = 'block';
+    }
+});
+
+// Validate total_kcal to only allow numbers
+document.getElementById('total_kcal').addEventListener('input', function(event) {
+    let inputVal = this.value;
+
+    // Remove non-numeric characters
+    this.value = inputVal.replace(/[^0-9]/g, '');
+
+    if (inputVal !== this.value) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Input Tidak Valid',
+            text: 'Mohon masukkan hanya angka untuk total kalori!',
+            confirmButtonText: 'OK'
+        });
+    }
+});
+
+// Form submission validation
+document.getElementById('resepForm').addEventListener('submit', function (e) {
+    e.preventDefault(); // Prevent default submission
+
+    // Update hidden fields with Quill data
+    document.getElementById('ingredient').value = quillIngredient.root.innerHTML;
+    document.getElementById('instruction').value = quillInstruction.root.innerHTML;
+
+    // Get values
+    const namaResep = document.getElementById('recipe_name').value.trim();
+    const deskripsi = document.getElementById('description').value.trim();
+    const bahan = document.getElementById('ingredient').value.trim();
+    const cara = document.getElementById('instruction').value.trim();
+    const kalori = document.getElementById('total_kcal').value.trim();
+    const image = document.getElementById('image').files[0];
+
+    // Validation checks
+    if (!namaResep || !deskripsi || !bahan || !cara || !kalori) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal!',
+            text: 'Mohon isi semua field sebelum mengupload!',
+            confirmButtonText: 'OK'
+        });
+        return;
+    }
+
+    if (isNaN(kalori) || parseInt(kalori) <= 0) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal!',
+            text: 'Total kalori harus berupa angka dan lebih dari 0!',
+            confirmButtonText: 'OK'
+        });
+        return;
+    }
+
+    if (image && image.size > 5 * 1024 * 1024) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Ukuran gambar terlalu besar!',
+            text: 'Maksimum ukuran gambar yang diperbolehkan adalah 5MB.',
+            confirmButtonText: 'OK'
+        });
+        return;
+    }
+
+    // Show loading alert
+    Swal.fire({
+        title: 'Mengupload...',
+        text: 'Silakan tunggu sebentar.',
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
         }
     });
+
+    // Simulate form submission with Fetch API
+    fetch(this.action, {
+        method: this.method,
+        body: new FormData(this),
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            const contentType = response.headers.get("content-type");
+            if (contentType && contentType.includes("application/json")) {
+                return response.json().then(errData => {
+                    throw new Error(errData.message || `Server Error: ${response.status}`);
+                });
+            } else {
+                throw new Error(`Unexpected response from server (status: ${response.status})`);
+            }
+        }
+        return response.json();
+    })
+    .then(data => {
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: 'Data berhasil diupload!',
+            confirmButtonText: 'OK'
+        }).then(() => {
+            this.submit();
+        });
+    })
+    .catch(error => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal!',
+            text: `Terjadi kesalahan: ${error.message}. Coba lagi nanti!`,
+            confirmButtonText: 'OK'
+        });
+        return;
+    });
+});
     </script>
 </body>
 @endsection

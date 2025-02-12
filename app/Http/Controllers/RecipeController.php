@@ -30,6 +30,7 @@ class RecipeController extends Controller
 
         $recipe = new Recipe;
         $recipe->recipe_name = $request->recipe_name;
+        $recipe->user_id = Auth::id();
         $recipe->description = $request->description;
         $recipe->ingredient = $request->ingredient;
         $recipe->instruction = $request->instruction;
