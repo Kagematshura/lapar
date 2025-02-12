@@ -27,5 +27,3 @@
         
     </body>
     </html>
-    
-    <!-- ['name' => 'Notifications', 'link' => '#', 'icon' => 'chat'], -->

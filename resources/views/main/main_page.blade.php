@@ -3,7 +3,7 @@
 @section('content')
 <body class="bg-[#185863] font-poppins">
 
-    <div class="flex h-screen overflow-auto">
+    <div class="flex h-screen overflow-auto no-scrollbar">
 
         <div class="flex flex-col flex-1">
 
