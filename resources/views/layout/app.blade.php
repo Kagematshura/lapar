@@ -21,6 +21,7 @@
             ['name' => 'Settings', 'link' => '/settings', 'icon' => 'cog'],
             ['name' => 'Create Recipe', 'link' => '/recipe/create', 'icon' => 'edit-alt'],
             ['name' => 'Planning', 'link' => '/planning', 'icon' => 'scatter-chart'],
+            ['name' => 'Search', 'link' => '/Search', 'icon' => 'search-alt-2'],
             ]"/>
             @yield('content')
         </div>
