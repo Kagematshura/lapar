@@ -16,7 +16,7 @@ class LoginController extends Controller
     public function signup(Request $request) {
         $request->validate([
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
+            'password' => 'required|min:8',
         ]);
 
         $user = new User();
