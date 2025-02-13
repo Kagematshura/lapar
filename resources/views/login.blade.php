@@ -26,6 +26,7 @@
     <div class="relative overflow-hidden">
       {{-- Sign Up Form --}}
       <form id="signup-form" action="/signup" method="POST" class="transition-all duration-500 ease-in-out transform opacity-100 translate-x-0">
+        @csrf <!-- Add CSRF token for signup form -->
         <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Create Account</h2>
         <div class="space-y-4">
           <div>
@@ -57,6 +58,7 @@
 
       {{-- Login Form  --}}
       <form id="login-form" action="/login" method="POST" class="absolute top-0 left-0 w-full transition-all duration-500 ease-in-out transform opacity-0 translate-x-full">
+        @csrf <!-- Add CSRF token for login form -->
         <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Welcome Back</h2>
         <div class="space-y-4">
           <div>
@@ -161,6 +163,62 @@
             confirmButtonText: 'OK',
           }).then(() => {
             window.location.href = '/main_page'; // Redirect to the main page
+          });
+        }
+      } catch (error) {
+        Swal.fire({
+          title: 'Error!',
+          text: 'An unexpected error occurred. Please try again later.',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        });
+      }
+    });
+
+    // Signup Form Submission
+    signupForm.addEventListener('submit', async function(event) {
+      event.preventDefault();
+
+      const email = document.getElementById('signup-email').value.trim();
+      const password = document.getElementById('signup-password').value.trim();
+
+      // Validation
+      if (!email || !password) {
+        Swal.fire({
+          title: 'Error!',
+          text: 'Email and password are required.',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        });
+        return;
+      }
+
+      try {
+        const response = await fetch('/signup', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': csrfToken,
+          },
+          body: JSON.stringify({ email, password }),
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          Swal.fire({
+            title: 'Signup Failed!',
+            text: errorData.message || 'Unable to create account.',
+            icon: 'error',
+            confirmButtonText: 'OK',
+          });
+        } else {
+          Swal.fire({
+            title: 'Success!',
+            text: 'Signup successful. Redirecting...',
+            icon: 'success',
+            confirmButtonText: 'OK',
+          }).then(() => {
+            window.location.href = '/login_page'; // Redirect to the login page
           });
         }
       } catch (error) {
