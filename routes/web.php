@@ -9,6 +9,7 @@ use App\Http\Controllers\CalculatorController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\CaroImageController;
+use App\Http\Controllers\ApiSearchController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -49,6 +50,8 @@ Route::get('/planning', [CalculatorController::class, 'indexPlanning'])->name('p
 Route::get('/calorie-data', [CalculatorController::class, 'getWeeklyData']);
 Route::post('/planning/store', [CalculatorController::class, 'storePlanning'])->name('store.planning');
 
+//APISearch
+Route::get('/Search', [ApiSearchController::class, 'search'])->name('API.search');
 // Settings
 Route::get('/settings', [SettingsController::class, 'index'])->name('settings.settings');
 
@@ -60,4 +63,3 @@ Route::post('/upload-image', [CaroImageController::class, 'uploadCaroImage'])->n
 Route::delete('/delete-image/{id}', [CaroImageController::class, 'deleteCaroImage'])->name('delete.caroimage');
 
 Route::get('/admin/DataUser', [AdminController::class, 'AdminUser'])->name('admin.datauser');
-
