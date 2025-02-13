@@ -25,16 +25,17 @@ class RecipeController extends Controller
             'ingredient' => 'required|string',
             'instruction' => 'required|string',
             'total_kcal' => 'required|numeric',
-            'image'     => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image'     => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         ]);
 
         $recipe = new Recipe;
         $recipe->recipe_name = $request->recipe_name;
+        $recipe->user_id = Auth::id();
         $recipe->description = $request->description;
         $recipe->ingredient = $request->ingredient;
         $recipe->instruction = $request->instruction;
         $recipe->total_kcal = $request->total_kcal;
-        
+
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store( 'images', 'public');
             $recipe->image = $imagePath;

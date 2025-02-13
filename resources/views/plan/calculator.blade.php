@@ -53,6 +53,17 @@
                 </a>
                 @endforeach
             </div>
+
+            {{-- Recommendation Text --}}
+            <div class="mt-4 text-center">
+                @if($kategori == 'Normal')
+                    <p class="text-lg font-medium text-green-600">Berat badan Anda sudah dalam kategori ideal! Disarankan untuk memilih <span class="font-bold">Jaga Stabilitas</span> agar tetap sehat.</p>
+                @elseif($kategori == 'Kurus')
+                    <p class="text-lg font-medium text-yellow-600">Berat badan Anda tergolong kurang. Disarankan untuk memilih <span class="font-bold">Naikkan</span> agar mencapai berat ideal.</p>
+                @else
+                    <p class="text-lg font-medium text-red-600">Berat badan Anda tergolong berlebih. Disarankan untuk memilih <span class="font-bold">Turunkan</span> untuk mencapai berat ideal.</p>
+                @endif
+            </div>
         </div>
 
         @else

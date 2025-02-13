@@ -33,7 +33,7 @@
                             </button>
                         </form>
                     </div>
-                </div>   
+                </div>
             </div>
 
             <hr class="border-t border-gray-400 mb-3 mt-6 w-full">
@@ -52,7 +52,7 @@
                     </ol>
                 </div>
             </div>
-            
+
             <hr class="border-t border-gray-400 mb-6 w-full">
             <div class="mb-8 mt-10">
                 <h2 class="text-2xl font-semibold text-[#0B4A7C] mb-4">Calorie Information</h2>

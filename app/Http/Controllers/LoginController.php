@@ -16,7 +16,7 @@ class LoginController extends Controller
     public function signup(Request $request) {
         $request->validate([
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
+            'password' => 'required|min:8',
         ]);
 
         $user = new User();
@@ -50,5 +50,9 @@ class LoginController extends Controller
     {
         Auth::logout();
         return response()->json(['message' => 'Logged out']);
+    }
+
+    public function loginTest(){
+        return view('login_test');
     }
 }

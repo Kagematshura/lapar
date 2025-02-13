@@ -18,8 +18,7 @@ return new class extends Migration
             $table->longText('ingredient');
             $table->longText('instruction');
             $table->string('total_kcal');
-            $table->integer('like_count')->nullable();
-            $table->integer('dislike_count')->nullable();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
