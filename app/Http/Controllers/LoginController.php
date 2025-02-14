@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-
 class LoginController extends Controller
 {
     public function view(){
@@ -43,7 +42,7 @@ class LoginController extends Controller
 
         return response()->json([
             'message' => 'Invalid email or password',
-        ], 401);
+        ], 401);    
     }
 
     public function logout()

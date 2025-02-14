@@ -16,15 +16,25 @@
     <div class="flex font-poppins">
         <x-sidebar :menu-items="[
             ['name' => 'Explore', 'link' => '/main_page', 'icon' => 'globe'],
-            ['name' => 'Calculator', 'link' => '/calculator', 'icon' => 'calculator'],
-            ['name' => 'Profile', 'link' => '/profile', 'icon' => 'user'],
-            ['name' => 'Settings', 'link' => '/settings', 'icon' => 'cog'],
-            ['name' => 'Create Recipe', 'link' => '/recipe/create', 'icon' => 'edit-alt'],
-            ['name' => 'Planning', 'link' => '/planning', 'icon' => 'scatter-chart'],
+            ['name' => 'Calculator', 'link' => '/calculator', 'icon' => 'calculator', 'guest' => false],
+            ['name' => 'Profile', 'link' => '/profile', 'icon' => 'user', 'guest' => false],
+            ['name' => 'Settings', 'link' => '/settings', 'icon' => 'cog', 'guest' => false],
+            ['name' => 'Create Recipe', 'link' => '/recipe/create', 'icon' => 'edit-alt', 'guest' => false],
+            ['name' => 'Planning', 'link' => '/planning', 'icon' => 'scatter-chart', 'guest' => false],
             ['name' => 'Search', 'link' => '/Search', 'icon' => 'search-alt-2'],
             ]"/>
             @yield('content')
-        </div>
-        
-    </body>
-    </html>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var isGuest = true; // Gantilah dengan logika untuk mendeteksi apakah user adalah guest
+            if (isGuest) {
+                document.querySelectorAll("[href='/calculator'], [href='/planning'], [href='/profile'], [href='/settings'], [href='/recipe/create']").forEach(function(el) {
+                    el.parentElement.style.display = 'none';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
