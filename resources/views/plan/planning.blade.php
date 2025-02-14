@@ -51,6 +51,54 @@
                 </div>
             </div>
         </div>
+
+        <div class="ml-24 grid grid-cols-2 gap-10 w-full max-w-5xl">
+            <!-- Chart Section -->
+            <div class="col-span-1 bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-center text-lg font-bold mb-4">PLANNING</h2>
+                <hr class="mb-4">
+                <div class="flex justify-center">
+                    <!-- Chart Placeholder -->
+                    <div class="w-[90%] h-64">
+                    <canvas id="calorieChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input and Table Section -->
+            <div class="col-span-1 bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-center text-lg font-bold mb-4">Put in Calorie Intake Quota Here</h2>
+                <hr class="mb-4">
+                <!-- Input Form -->
+                <form id="planForm" class="mb-4" action="{{ route('store.planning') }}" method="POST">
+                    @csrf
+                    <input id="kcal_intake" name="kcal_intake" placeholder="Enter Calorie Quota" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <button id="submitBtn" type="submit" class="w-full py-2 px-4 mt-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        Input
+                    </button>
+                </form>
+                <hr class="mb-4">
+                <!-- Table -->
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-lg">
+                        <thead>
+                            <tr class="bg-blue-600 text-white">
+                                <th class="px-4 py-2 border">CALORIE INTAKE</th>
+                                <th class="px-4 py-2 border">REGISTERED AT</th>
+                            </tr>
+                        </thead>
+                        @foreach ($planning as $plans)
+                        <tbody id="calorieTableBody">
+                            <tr>
+                                <td class="px-4 py-2 border text-center">{{ $plans->kcal_intake }}</td>
+                                <td class="px-4 py-2 border text-center">{{ $plans->created_at->timezone('Asia/Jakarta') }}</td>
+                            </tr>
+                        </tbody>
+                        @endforeach
+                    </table>
+                </div>
+            </div>
+        </div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

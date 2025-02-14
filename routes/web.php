@@ -19,7 +19,7 @@ Route::get('/', function () {
 Route::get('/login_page', [LoginController::class, 'view'])->name('login.page');
 Route::post('/signup', [LoginController::class, 'signup'])->name('login.signup');
 Route::post('/login', [LoginController::class, 'login'])->name('login.login');
-Route::post('/logout', [LoginController::class, 'logout'])->middleware('Login')->name('login.logout');
+Route::post('/logout', [LoginController::class, 'logout'])->name('login.logout');
 
 Route::get('/login_test', [LoginController::class, 'loginTest'])->name('login.test');
 
