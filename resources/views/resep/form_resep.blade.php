@@ -235,19 +235,19 @@ document.getElementById('resepForm').addEventListener('submit', function (e) {
             'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
         }
     })
-    .then(response => {
-        if (!response.ok) {
-            const contentType = response.headers.get("content-type");
-            if (contentType && contentType.includes("application/json")) {
-                return response.json().then(errData => {
-                    throw new Error(errData.message || `Server Error: ${response.status}`);
-                });
-            } else {
-                throw new Error(`Unexpected response from server (status: ${response.status})`);
-            }
-        }
-        return response.json();
-    })
+    // .then(response => {
+    //     if (!response.ok) {
+    //         const contentType = response.headers.get("content-type");
+    //         if (contentType && contentType.includes("application/json")) {
+    //             return response.json().then(errData => {
+    //                 throw new Error(errData.message || `Server Error: ${response.status}`);
+    //             });
+    //         } else {
+    //             throw new Error(`Unexpected response from server (status: ${response.status})`);
+    //         }
+    //     }
+    //     return response.json();
+    // })
     .then(data => {
         Swal.fire({
             icon: 'success',
@@ -255,7 +255,6 @@ document.getElementById('resepForm').addEventListener('submit', function (e) {
             text: 'Data berhasil diupload!',
             confirmButtonText: 'OK'
         }).then(() => {
-            this.submit();
         });
     })
     .catch(error => {

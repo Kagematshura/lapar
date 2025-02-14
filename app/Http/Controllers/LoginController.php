@@ -49,7 +49,7 @@ class LoginController extends Controller
     public function logout()
     {
         Auth::logout();
-        return response()->json(['message' => 'Logged out']);
+        return redirect()->route('login.page');
     }
 
     public function loginTest(){
