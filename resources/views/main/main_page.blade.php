@@ -125,6 +125,21 @@
 
         // Initialize the first slide
         showItem(currentIndex);
+
+        // Driver js
+        import { driver } from "driver.js";
+        import "driver.js/dist/driver.css";
+
+        const driverObj = driver({
+            showProgress: true,
+            steps: [
+                {element: '', popover: {title: '', description: ''}},
+                {element: '', popover: {title: '', description: ''}},
+                {element: '', popover: {title: '', description: ''}},
+                {element: '', popover: {title: '', description: ''}},
+                {element: '', popover: {title: '', description: ''}},
+            ]
+        })
     </script>
 
     <style>
