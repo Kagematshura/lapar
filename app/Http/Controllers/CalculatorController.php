@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Planning;
+use App\Models\BB;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -62,14 +63,10 @@ class CalculatorController extends Controller
     {
         $startOfWeek = Carbon::now('Asia/Jakarta')->startOfWeek();
         $endOfWeek = Carbon::now('Asia/Jakarta')->endOfWeek();
-    
-        // Log::info("Fetching data from: $startOfWeek to $endOfWeek");
-    
+        
         $weekData = Planning::whereBetween('created_at', [$startOfWeek, $endOfWeek])
             ->orderBy('created_at')
             ->get();
-    
-        // Log::info("Retrieved data:", $weekData->toArray());
     
         return response()->json($weekData->map(function ($entry) {
             return [
@@ -80,8 +77,9 @@ class CalculatorController extends Controller
     }
     public function indexPlanning(){
         $planning = Planning::where('user_id', auth()->id())->get();
+        $berat = BB::where('user_id', auth()->id())->get();
 
-        return view('plan.planning', compact('planning'));
+        return view('plan.planning', compact('planning', 'berat'));
     }
 
     public function storePlanning(Request $request) {    
@@ -96,5 +94,18 @@ class CalculatorController extends Controller
         $planning->save();
 
     return redirect()->route('plan.planning')->with('success', 'Plans assigned.');
+    }
+    public function storeBB(Request $request) {    
+        $request->validate([
+            'body_weight' => 'required|numeric',
+        ]);
+
+        $bb = new BB;
+        $bb->body_weight = $request->body_weight;
+        $bb->user_id = Auth::id();
+
+        $bb->save();
+
+    return redirect()->route('plan.planning')->with('success', 'BB assigned.');
     }
 }

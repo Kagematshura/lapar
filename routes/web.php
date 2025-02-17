@@ -19,7 +19,7 @@ Route::get('/', function () {
 Route::get('/login_page', [LoginController::class, 'view'])->name('login.page');
 Route::post('/signup', [LoginController::class, 'signup'])->name('login.signup');
 Route::post('/login', [LoginController::class, 'login'])->name('login.login');
-Route::post('/logout', [LoginController::class, 'logout'])->middleware('Login')->name('login.logout');
+Route::post('/logout', [LoginController::class, 'logout'])->name('login.logout');
 
 Route::get('/login_test', [LoginController::class, 'loginTest'])->name('login.test');
 
@@ -48,7 +48,8 @@ Route::get('/calculator', [CalculatorController::class, 'index'])->name('calcula
 Route::post('/calculator/calculate', [CalculatorController::class, 'calculate'])->name('calculate.bmi');
 Route::get('/planning', [CalculatorController::class, 'indexPlanning'])->name('plan.planning');
 Route::get('/calorie-data', [CalculatorController::class, 'getWeeklyData']);
-Route::post('/planning/store', [CalculatorController::class, 'storePlanning'])->name('store.planning');
+Route::post('/planning/calorie/store', [CalculatorController::class, 'storePlanning'])->name('store.planning');
+Route::post('/planning/bb/store', [CalculatorController::class, 'storeBB'])->name('store.bb');
 
 //APISearch
 Route::get('/Search', [ApiSearchController::class, 'search'])->name('API.search');

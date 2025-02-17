@@ -14,16 +14,27 @@
 <body>
 
     <div class="flex font-poppins">
-        <x-sidebar :menu-items="[
-            ['name' => 'Explore', 'link' => '/main_page', 'icon' => 'globe'],
-            ['name' => 'Calculator', 'link' => '/calculator', 'icon' => 'calculator'],
-            ['name' => 'Profile', 'link' => '/profile', 'icon' => 'user'],
-            ['name' => 'Settings', 'link' => '/settings', 'icon' => 'cog'],
-            ['name' => 'Create Recipe', 'link' => '/recipe/create', 'icon' => 'edit-alt'],
-            ['name' => 'Planning', 'link' => '/planning', 'icon' => 'scatter-chart'],
-            ]"/>
-            @yield('content')
-        </div>
+        @php
+            $isGuest = !auth()->check();
+            $menuItems = [
+                ['name' => 'Explore', 'link' => '/main_page', 'icon' => 'globe'],
+                ['name' => 'Calculator', 'link' => '/calculator', 'icon' => 'calculator', 'guest' => false],
+                ['name' => 'Profile', 'link' => '/profile', 'icon' => 'user', 'guest' => false],
+                ['name' => 'Settings', 'link' => '/settings', 'icon' => 'cog', 'guest' => false],
+                ['name' => 'Create Recipe', 'link' => '/recipe/create', 'icon' => 'edit-alt', 'guest' => false],
+                ['name' => 'Planning', 'link' => '/planning', 'icon' => 'scatter-chart', 'guest' => false],
+                ['name' => 'Search', 'link' => '/Search', 'icon' => 'search-alt-2']
+            ];
 
-    </body>
-    </html>
+            if ($isGuest) {
+                $menuItems = array_filter($menuItems, function($item) {
+                    return !isset($item['guest']) || $item['guest'] !== false;
+                });
+            }
+        @endphp
+
+        <x-sidebar :menu-items="$menuItems" />
+        @yield('content')
+    </div>
+</body>
+</html>

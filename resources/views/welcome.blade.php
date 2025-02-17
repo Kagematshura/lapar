@@ -4,9 +4,29 @@
     <h1 class="text-white text-5xl font-bold mb-4">Easy To Find Healthy Food</h1>
     <p class="text-white text-2xl mb-8">Get your stuff together</p>
 
-    <a href="{{route('login.page')}}"
+    <a href="#" id="getStartedButton"
       class="px-6 py-3 text-lg font-semibold text-[#185863] bg-white rounded-lg shadow-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400">
       Get Started
     </a>
   </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    document.getElementById("getStartedButton").addEventListener("click", function(event) {
+      event.preventDefault();
+      Swal.fire({
+        title: "Apakah anda ingin login?",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "Login",
+        cancelButtonText: "Lanjutkan Tanpa Login"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = "{{route('login.page')}}";
+        } else {
+          window.location.href = "{{route('main.main_page')}}";
+        }
+      });
+    });
+  </script>
 </body>
