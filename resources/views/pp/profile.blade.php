@@ -12,7 +12,7 @@
                     text: 'Anda tidak bisa membuka tampilan tersebut dikarenakan tidak login',
                     confirmButtonColor: '#d33'
                 }).then(() => {
-                    window.location.href = "{{ route('login') }}"; // Redirect ke halaman login
+                    window.location.href = "{{ route('login') }}";
                 });
             });
         </script>
