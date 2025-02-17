@@ -2,7 +2,7 @@
 
 @section('content')
 
-<body class="flex bg-[#185863] h-screen">
+<body class="flex bg-[#185863]">
     @if (!auth()->check())
         <script>
             document.addEventListener("DOMContentLoaded", function () {

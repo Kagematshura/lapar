@@ -1,10 +1,10 @@
 @extends('layout.app')
 
 @section('content')
-<body class="flex bg-[#185863] h-screen">
+<body class="bg-[#185863] h-screen overflow-auto">
 
-    <main class="flex flex-1 ml-40 items-center justify-center font-poppins">
-        <div class="ml-24 grid grid-cols-2 gap-10 w-full max-w-5xl">
+    <main class="flex flex-1 items-center justify-center font-poppins">
+        <div class="grid grid-cols-2 gap-10 w-full max-w-5xl">
             <!-- Calorie Chart Section -->
             <div class="col-span-1 bg-white p-6 rounded-lg shadow-lg">
                 <h2 class="text-center text-lg font-bold mb-4">PLANNING</h2>
@@ -47,9 +47,7 @@
                     </table>
                 </div>
             </div>
-        </div>
 
-        <div class="ml-24 grid grid-cols-2 gap-10 w-full max-w-5xl">
             <!-- Body Weight Chart Section -->
             <div class="col-span-1 bg-white p-6 rounded-lg shadow-lg">
                 <h2 class="text-center text-lg font-bold mb-4">Body Weight</h2>
@@ -159,81 +157,6 @@
 
             let calorieChart = createChart("calorieChart", "Calorie Intake", "rgba(54, 162, 235, 1)", "calorieTableBody", "kcal");
             let BBChart = createChart("BBChart", "Body Weight", "rgba(255, 99, 132, 1)", "BBTableBody", "kg");
-
-    // Function to format 'YYYY-MM-DD' -> 'MM-DD'
-    function formatDate(isoDate) {
-        let dateParts = isoDate.split("-");
-        return `${dateParts[1]}-${dateParts[2]}`; // Extract MM-DD
-    }
-
-    // Function to determine dynamic Y-axis max value
-    function getDynamicMax(data) {
-        let maxValue = Math.max(...data, 100); // Ensure there's at least a base value
-        return maxValue + 100; // Add 100 over the highest value
-    }
-
-    function updateChart(chart, tableId) {
-                let { labels, data } = extractTableData(tableId);
-                chart.data.labels = labels;
-                chart.data.datasets[0].data = data;
-                chart.update();
-            }
-
-            document.getElementById("calorieForm").addEventListener("submit", function () {
-                setTimeout(() => updateChart(calorieChart, "calorieTableBody"), 1000);
-            });
-
-            document.getElementById("bbForm").addEventListener("submit", function () {
-                setTimeout(() => updateChart(BBChart, "BBTableBody"), 1000);
-            });
-        });
-
-        document.getElementById('calorieForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            const intakeKcal = document.getElementById('kcal_intake').value.trim();
-
-            if (intakeKcal) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Berhasil!',
-                    text: '',
-                    confirmButtonText: 'OK'
-                }).then(() => {
-                    this.submit();
-                });
-            } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Gagal!',
-                    text: '',
-                    confirmButtonText: 'OK'
-                });
-            }
-        });
-
-        document.getElementById('bbForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            const bodyWeight = document.getElementById('body_weight').value.trim();
-
-            if (bodyWeight) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Berhasil!',
-                    text: '',
-                    confirmButtonText: 'OK'
-                }).then(() => {
-                    this.submit();
-                });
-            } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Gagal!',
-                    text: '',
-                    confirmButtonText: 'OK'
-                });
-            }
         });
     </script>
 </body>
