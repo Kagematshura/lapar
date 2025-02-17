@@ -9,13 +9,13 @@
 
             <!-- Top Banner Carousel -->
             <div class="w-full relative">
-                <div class="carousel w-full h-64 overflow-hidden relative">
+                <div class="carousel w-full h-48 md:h-64 overflow-hidden relative">
                     @foreach ($caroimage as $images)
                         <div class="carousel-item w-full h-full transition-transform duration-500 ease-in-out transform translate-x-0">
                             <img
                                 src="{{ $images->image_path ? asset('storage/' . $images->image_path) : 'https://placehold.co/1920x300?text=Slide+1' }}"
                                 alt="Slide"
-                                class="w-[1920px] h-[300px] object-cover">
+                                class="w-full h-full object-cover">
                         </div>
                     @endforeach
                 </div>
@@ -34,28 +34,28 @@
                 </div>
             </div>
 
-            <div class="flex-1 flex flex-col items-center justify-center">
-                <!-- Search Section -->
-                <div class="my-8">
-                    <input type="text" id="titleFilter" class="p-2 rounded border border-gray-300 px-6" placeholder="Search...">
+            <!-- Search Section -->
+            <div class="flex-1 flex flex-col items-center justify-center my-4 md:my-8">
+                <div class="w-full px-4 md:w-auto">
+                    <input type="text" id="titleFilter" class="w-full md:w-auto p-2 rounded border border-gray-300 px-6" placeholder="Search...">
                     <button
                     onclick="#"
-                    class="bg-[#0B4A7C] px-6 py-2 ml-6 text-white rounded-lg shadow-lg hover:bg-[#1b405f]">Search</button>
+                    class="w-full md:w-auto bg-[#0B4A7C] px-6 py-2 mt-2 md:mt-0 md:ml-6 text-white rounded-lg shadow-lg hover:bg-[#1b405f]">Search</button>
                 </div>
             </div>
 
             <!-- Recently Uploaded by You Section -->
-            <div class="w-full px-10 recent-uploads-container">
+            <div class="w-full px-4 md:px-10 recent-uploads-container">
                 <h2 class="text-white text-2xl font-bold mb-4">Recently Uploaded by You</h2>
                 @if ($recentUploads->isEmpty())
-                        <div class="p-4 text-left">
-                            <p class="text-white">No recent uploads found. Start uploading your recipes!</p>
-                        </div>
+                    <div class="p-4 text-left">
+                        <p class="text-white">No recent uploads found. Start uploading your recipes!</p>
+                    </div>
                 @else
-                <div class="flex items-center justify-start w-full p-4 flex-wrap gap-4">
+                <div class="flex flex-wrap gap-4 justify-center md:justify-start">
                     @foreach ($recentUploads as $upload)
-                    <div class="bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105">
-                        <div class="bg-gray-300 w-64 h-64 flex flex-col items-center justify-center rounded-lg relative group">
+                    <div class="bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105 w-full sm:w-48 md:w-64">
+                        <div class="bg-gray-300 w-full h-48 md:h-64 flex flex-col items-center justify-center rounded-lg relative group">
                             <img src="{{ asset('storage/' . $upload->image) ?? 'https://placehold.co/400' }}" alt="Food Image" class="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-300 ease-in-out">
                             <div class="absolute bottom-0 bg-black bg-opacity-50 w-full text-white text-center py-2 rounded-b-lg">
                                 <a href="{{ route('recipe.show', $upload->id) }}" class="font-semibold hover:text-[#1b405f]">{{ $upload->recipe_name }}</a>
@@ -68,17 +68,17 @@
             </div>
 
             <!-- Recommendations Section -->
-            <div class="w-full px-10 mt-10 mb-96 recommendations-container">
+            <div class="w-full px-4 md:px-10 mt-6 md:mt-10 mb-24 md:mb-96 recommendations-container">
                 <h2 class="text-white text-2xl font-bold mb-4">Recommendations</h2>
                 @if ($recipe->isEmpty())
-                        <div class="p-4 text-left">
-                            <p class="text-white">No recommendations found. Explore more recipes!</p>
-                        </div>
+                    <div class="p-4 text-left">
+                        <p class="text-white">No recommendations found. Explore more recipes!</p>
+                    </div>
                 @else
-                <div class="flex items-center justify-start w-full p-4 flex-wrap gap-4">
+                <div class="flex flex-wrap gap-4 justify-center md:justify-start">
                     @foreach ($recipe as $recipes)
-                    <div class="bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105">
-                        <div class="bg-gray-300 w-64 h-64 flex flex-col items-center justify-center rounded-lg relative group">
+                    <div class="bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105 w-full sm:w-48 md:w-64">
+                        <div class="bg-gray-300 w-full h-48 md:h-64 flex flex-col items-center justify-center rounded-lg relative group">
                             <img src="{{ asset('storage/' . $recipes->image) ?? 'https://placehold.co/400' }}" alt="Food Image" class="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-300 ease-in-out">
                             <div class="absolute bottom-0 bg-black bg-opacity-50 w-full text-white text-center py-2 rounded-b-lg">
                                 <a href="{{ route('recipe.show', $recipes->id) }}" class="font-semibold hover:text-[#1b405f]">{{ $recipes->recipe_name }}</a>
@@ -121,70 +121,55 @@
         }, 5000); // Change slide every 5 seconds
 
         document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('titleFilter').addEventListener('input', function () {
-        let filter = this.value.toLowerCase();
+            document.getElementById('titleFilter').addEventListener('input', function () {
+                let filter = this.value.toLowerCase();
 
-        let sections = [
-            {
-                container: document.querySelector('.recent-uploads-container'),
-                items: document.querySelectorAll('.recent-uploads-container .bg-white.shadow-lg'),
-                messageId: 'recentUploadsMessage'
-            },
-            {
-                container: document.querySelector('.recommendations-container'),
-                items: document.querySelectorAll('.recommendations-container .bg-white.shadow-lg'),
-                messageId: 'recommendationsMessage'
-            }
-        ];
+                let sections = [
+                    {
+                        container: document.querySelector('.recent-uploads-container'),
+                        items: document.querySelectorAll('.recent-uploads-container .bg-white.shadow-lg'),
+                        messageId: 'recentUploadsMessage'
+                    },
+                    {
+                        container: document.querySelector('.recommendations-container'),
+                        items: document.querySelectorAll('.recommendations-container .bg-white.shadow-lg'),
+                        messageId: 'recommendationsMessage'
+                    }
+                ];
 
-        sections.forEach(section => {
-            let visibleCount = 0;
+                sections.forEach(section => {
+                    let visibleCount = 0;
 
-            section.items.forEach(recipe => {
-                let title = recipe.querySelector('.absolute a').textContent.toLowerCase();
-                if (title.includes(filter)) {
-                    recipe.style.display = 'block';
-                    visibleCount++;
-                } else {
-                    recipe.style.display = 'none';
-                }
+                    section.items.forEach(recipe => {
+                        let title = recipe.querySelector('.absolute a').textContent.toLowerCase();
+                        if (title.includes(filter)) {
+                            recipe.style.display = 'block';
+                            visibleCount++;
+                        } else {
+                            recipe.style.display = 'none';
+                        }
+                    });
+
+                    let message = document.getElementById(section.messageId);
+                    if (visibleCount === 0) {
+                        if (!message) {
+                            message = document.createElement('p');
+                            message.id = section.messageId;
+                            message.className = 'text-white p-4 text-left';
+                            message.textContent = 'No recipes match your search.';
+                            section.container.appendChild(message);
+                            setTimeout(() => message.classList.remove('opacity-0'), 10);
+                        }
+                    } else if (message) {
+                        message.classList.add('opacity-0');
+                        setTimeout(() => message.remove(), 300);
+                    }
+                });
             });
-
-            let message = document.getElementById(section.messageId);
-            if (visibleCount === 0) {
-                if (!message) {
-                    message = document.createElement('p');
-                    message.id = section.messageId;
-                    message.className = 'text-white p-4 text-left';
-                    message.textContent = 'No recipes match your search.';
-                    section.container.appendChild(message);
-                    setTimeout(() => message.classList.remove('opacity-0'), 10);
-                }
-            } else if (message) {
-                message.classList.add('opacity-0');
-                setTimeout(() => message.remove(), 300);
-            }
         });
-    });
-});
 
         // Initialize the first slide
         showItem(currentIndex);
-
-        // Driver js
-        import { driver } from "driver.js";
-        import "driver.js/dist/driver.css";
-
-        const driverObj = driver({
-            showProgress: true,
-            steps: [
-                {element: '', popover: {title: '', description: ''}},
-                {element: '', popover: {title: '', description: ''}},
-                {element: '', popover: {title: '', description: ''}},
-                {element: '', popover: {title: '', description: ''}},
-                {element: '', popover: {title: '', description: ''}},
-            ]
-        })
     </script>
 
     <style>

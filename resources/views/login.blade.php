@@ -14,7 +14,7 @@
   <div class="w-full max-w-lg p-8 bg-[#E8F6F9] rounded-lg shadow-lg">
     <!-- Toggle Buttons -->
     <div class="flex justify-center mb-8">
-      <button id="toggle-signup" class="px-6 py-2 text-sm font-semibold text-gray-600 bg-gray-200 bg-gray-300 rounded-l-lg focus:outline-none transition-colors duration-300" data-target="signup">
+      <button id="toggle-signup" class="px-6 py-2 text-sm font-semibold text-gray-600 bg-gray-200 rounded-l-lg focus:outline-none transition-colors duration-300" data-target="signup">
         Sign Up
       </button>
       <button id="toggle-login" class="px-6 py-2 text-sm font-semibold text-gray-600 bg-gray-200 rounded-r-lg focus:outline-none transition-colors duration-300" data-target="login">
@@ -22,7 +22,7 @@
       </button>
     </div>
 
-    {{-- Forms  --}}
+    {{-- Forms --}}
     <div class="relative overflow-hidden">
       {{-- Sign Up Form --}}
       <form id="signup-form" action="/signup" method="POST" class="transition-all duration-500 ease-in-out transform opacity-100 translate-x-0">
@@ -56,7 +56,7 @@
         </a>
       </form>
 
-      {{-- Login Form  --}}
+      {{-- Login Form --}}
       <form id="login-form" action="/login" method="POST" class="absolute top-0 left-0 w-full transition-all duration-500 ease-in-out transform opacity-0 translate-x-full">
         @csrf <!-- Add CSRF token for login form -->
         <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Welcome Back</h2>
