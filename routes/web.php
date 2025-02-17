@@ -48,7 +48,8 @@ Route::get('/calculator', [CalculatorController::class, 'index'])->name('calcula
 Route::post('/calculator/calculate', [CalculatorController::class, 'calculate'])->name('calculate.bmi');
 Route::get('/planning', [CalculatorController::class, 'indexPlanning'])->name('plan.planning');
 Route::get('/calorie-data', [CalculatorController::class, 'getWeeklyData']);
-Route::post('/planning/store', [CalculatorController::class, 'storePlanning'])->name('store.planning');
+Route::post('/planning/calorie/store', [CalculatorController::class, 'storePlanning'])->name('store.planning');
+Route::post('/planning/bb/store', [CalculatorController::class, 'storeBB'])->name('store.bb');
 
 //APISearch
 Route::get('/Search', [ApiSearchController::class, 'search'])->name('API.search');

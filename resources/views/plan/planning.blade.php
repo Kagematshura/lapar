@@ -5,32 +5,29 @@
 
     <main class="flex flex-1 ml-40 items-center justify-center font-poppins">
         <div class="ml-24 grid grid-cols-2 gap-10 w-full max-w-5xl">
-            <!-- Chart Section -->
+            <!-- Calorie Chart Section -->
             <div class="col-span-1 bg-white p-6 rounded-lg shadow-lg">
                 <h2 class="text-center text-lg font-bold mb-4">PLANNING</h2>
                 <hr class="mb-4">
                 <div class="flex justify-center">
-                    <!-- Chart Placeholder -->
                     <div class="w-[90%] h-64">
-                    <canvas id="calorieChart"></canvas>
+                        <canvas id="calorieChart"></canvas>
                     </div>
                 </div>
             </div>
 
-            <!-- Input and Table Section -->
+            <!-- Calorie Input & Table -->
             <div class="col-span-1 bg-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-center text-lg font-bold mb-4">Put in Calorie Intake Quota Here</h2>
+                <h2 class="text-center text-lg font-bold mb-4">Put in your Calorie Intake here</h2>
                 <hr class="mb-4">
-                <!-- Input Form -->
-                <form id="planForm" class="mb-4" action="{{ route('store.planning') }}" method="POST">
+                <form id="calorieForm" class="mb-4" action="{{ route('store.planning') }}" method="POST">
                     @csrf
                     <input id="kcal_intake" name="kcal_intake" placeholder="Enter Calorie Quota" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <button id="submitBtn" type="submit" class="w-full py-2 px-4 mt-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <button id="submitCalorieBtn" type="submit" class="w-full py-2 px-4 mt-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
                         Input
                     </button>
                 </form>
                 <hr class="mb-4">
-                <!-- Table -->
                 <div class="overflow-x-auto">
                     <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-lg">
                         <thead>
@@ -39,62 +36,59 @@
                                 <th class="px-4 py-2 border">REGISTERED AT</th>
                             </tr>
                         </thead>
-                        @foreach ($planning as $plans)
                         <tbody id="calorieTableBody">
-                            <tr>
-                                <td class="px-4 py-2 border text-center">{{ $plans->kcal_intake }}</td>
-                                <td class="px-4 py-2 border text-center">{{ $plans->created_at->timezone('Asia/Jakarta') }}</td>
-                            </tr>
+                            @foreach ($planning as $plans)
+                                <tr>
+                                    <td class="px-4 py-2 border text-center">{{ $plans->kcal_intake }}</td>
+                                    <td class="px-4 py-2 border text-center">{{ $plans->created_at->timezone('Asia/Jakarta') }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
-                        @endforeach
                     </table>
                 </div>
             </div>
         </div>
 
         <div class="ml-24 grid grid-cols-2 gap-10 w-full max-w-5xl">
-            <!-- Chart Section -->
+            <!-- Body Weight Chart Section -->
             <div class="col-span-1 bg-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-center text-lg font-bold mb-4">PLANNING</h2>
+                <h2 class="text-center text-lg font-bold mb-4">Body Weight</h2>
                 <hr class="mb-4">
                 <div class="flex justify-center">
-                    <!-- Chart Placeholder -->
                     <div class="w-[90%] h-64">
-                    <canvas id="calorieChart"></canvas>
+                        <canvas id="BBChart"></canvas>
                     </div>
                 </div>
             </div>
 
-            <!-- Input and Table Section -->
+            <!-- Body Weight Input & Table -->
             <div class="col-span-1 bg-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-center text-lg font-bold mb-4">Put in Calorie Intake Quota Here</h2>
+                <h2 class="text-center text-lg font-bold mb-4">Put in your current Body Weight here</h2>
                 <hr class="mb-4">
-                <!-- Input Form -->
-                <form id="planForm" class="mb-4" action="{{ route('store.planning') }}" method="POST">
+                <form id="bbForm" class="mb-4" action="{{ route('store.bb') }}" method="POST">
                     @csrf
-                    <input id="kcal_intake" name="kcal_intake" placeholder="Enter Calorie Quota" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <button id="submitBtn" type="submit" class="w-full py-2 px-4 mt-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <input id="body_weight" name="body_weight" placeholder="Enter Body Weight" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <button id="submitBBBtn" type="submit" class="w-full py-2 px-4 mt-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
                         Input
                     </button>
                 </form>
                 <hr class="mb-4">
-                <!-- Table -->
                 <div class="overflow-x-auto">
                     <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-lg">
                         <thead>
                             <tr class="bg-blue-600 text-white">
-                                <th class="px-4 py-2 border">CALORIE INTAKE</th>
+                                <th class="px-4 py-2 border">BODY WEIGHT</th>
                                 <th class="px-4 py-2 border">REGISTERED AT</th>
                             </tr>
                         </thead>
-                        @foreach ($planning as $plans)
-                        <tbody id="calorieTableBody">
-                            <tr>
-                                <td class="px-4 py-2 border text-center">{{ $plans->kcal_intake }}</td>
-                                <td class="px-4 py-2 border text-center">{{ $plans->created_at->timezone('Asia/Jakarta') }}</td>
-                            </tr>
+                        <tbody id="BBTableBody">
+                            @foreach ($berat as $bb)
+                                <tr>
+                                    <td class="px-4 py-2 border text-center">{{ $bb->body_weight }}</td>
+                                    <td class="px-4 py-2 border text-center">{{ $bb->created_at->timezone('Asia/Jakarta') }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
-                        @endforeach
                     </table>
                 </div>
             </div>
@@ -106,27 +100,65 @@
     <script>
         // Initialize Chart
         document.addEventListener("DOMContentLoaded", function () {
-    const ctx = document.getElementById("calorieChart").getContext("2d");
+            function extractTableData(tableId) {
+                let labels = [];
+                let data = [];
 
-    // Function to get table data dynamically
-    function getTableData() {
-        let labels = [];
-        let data = [];
+                document.querySelectorAll(`#${tableId} tr`).forEach((row) => {
+                    let value = row.cells[0]?.innerText.trim();
+                    let dateTime = row.cells[1]?.innerText.trim();
 
-        document.querySelectorAll("#calorieTableBody tr").forEach((row) => {
-            let kcalIntake = row.cells[0].innerText.trim();
-            let dateTime = row.cells[1].innerText.trim();
+                    if (value && dateTime) {
+                        let dateOnly = dateTime.split(" ")[0];
+                        labels.push(dateOnly);
+                        data.push(parseFloat(value));
+                    }
+                });
 
-            if (kcalIntake && dateTime) {
-                let dateOnly = dateTime.split(" ")[0]; // Extract only 'YYYY-MM-DD'
-                let formattedDate = formatDate(dateOnly); // Convert to 'MM-DD'
-                labels.push(formattedDate);
-                data.push(parseInt(kcalIntake, 10)); // Convert to integer
+                return { labels, data };
             }
-        });
 
-        return { labels, data };
-    }
+            function createChart(chartId, label, color, tableId, unit) {
+                let ctx = document.getElementById(chartId).getContext("2d");
+                let { labels, data } = extractTableData(tableId);
+
+                return new Chart(ctx, {
+                    type: "line",
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: label,
+                                data: data,
+                                backgroundColor: `${color}20`,
+                                borderColor: color,
+                                borderWidth: 2,
+                                pointBackgroundColor: color,
+                            },
+                        ],
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: { enabled: true },
+                        },
+                        scales: {
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: `Value in ${unit}`,
+                                },
+                                beginAtZero: true,
+                                suggestedMax: Math.max(...data, 100) + 10,
+                            },
+                        },
+                    },
+                });
+            }
+
+            let calorieChart = createChart("calorieChart", "Calorie Intake", "rgba(54, 162, 235, 1)", "calorieTableBody", "kcal");
+            let BBChart = createChart("BBChart", "Body Weight", "rgba(255, 99, 132, 1)", "BBTableBody", "kg");
 
     // Function to format 'YYYY-MM-DD' -> 'MM-DD'
     function formatDate(isoDate) {
@@ -140,66 +172,52 @@
         return maxValue + 100; // Add 100 over the highest value
     }
 
-    // Get initial table data
-    let { labels, data } = getTableData();
+    function updateChart(chart, tableId) {
+                let { labels, data } = extractTableData(tableId);
+                chart.data.labels = labels;
+                chart.data.datasets[0].data = data;
+                chart.update();
+            }
 
-    // Initialize Chart
-    let calorieChart = new Chart(ctx, {
-        type: "line",
-        data: {
-            labels: labels,
-            datasets: [
-                {
-                    label: "Calorie Intake",
-                    data: data,
-                    backgroundColor: "rgba(54, 162, 235, 0.2)",
-                    borderColor: "rgba(54, 162, 235, 1)",
-                    borderWidth: 2,
-                    pointBackgroundColor: "rgba(54, 162, 235, 1)",
-                },
-            ],
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: { display: false },
-                tooltip: { enabled: true },
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    suggestedMax: getDynamicMax(data), // Set max dynamically
-                },
-            },
-        },
-    });
+            document.getElementById("calorieForm").addEventListener("submit", function () {
+                setTimeout(() => updateChart(calorieChart, "calorieTableBody"), 1000);
+            });
 
-    // Function to update the chart dynamically
-    function updateChart() {
-        let { labels, data } = getTableData();
+            document.getElementById("bbForm").addEventListener("submit", function () {
+                setTimeout(() => updateChart(BBChart, "BBTableBody"), 1000);
+            });
+        });
 
-        calorieChart.data.labels = labels;
-        calorieChart.data.datasets[0].data = data;
-        calorieChart.options.scales.y.suggestedMax = getDynamicMax(data); // Update max Y dynamically
-        calorieChart.update();
-    }
-
-    // Update chart when form is submitted
-    document.getElementById("planForm").addEventListener("submit", function (event) {
-        setTimeout(updateChart, 1000); // Delay update to allow the table to refresh
-    });
-
-    // Initial chart update
-    updateChart();
-});
-
-
-        document.getElementById('planForm').addEventListener('submit', function (e) {
+        document.getElementById('calorieForm').addEventListener('submit', function (e) {
             e.preventDefault();
 
             const intakeKcal = document.getElementById('kcal_intake').value.trim();
 
             if (intakeKcal) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: '',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    this.submit();
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal!',
+                    text: '',
+                    confirmButtonText: 'OK'
+                });
+            }
+        });
+
+        document.getElementById('bbForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const bodyWeight = document.getElementById('body_weight').value.trim();
+
+            if (bodyWeight) {
                 Swal.fire({
                     icon: 'success',
                     title: 'Berhasil!',
