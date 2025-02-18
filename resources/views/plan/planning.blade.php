@@ -18,15 +18,36 @@
 
             <!-- Calorie Input & Table -->
             <div class="col-span-1 bg-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-center text-lg font-bold mb-4">Put in your Calorie Intake here</h2>
-                <hr class="mb-4">
-                <form id="calorieForm" class="mb-4" action="{{ route('store.planning') }}" method="POST">
-                    @csrf
-                    <input id="kcal_intake" name="kcal_intake" placeholder="Enter Calorie Quota" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <button id="submitCalorieBtn" type="submit" class="w-full py-2 px-4 mt-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        Input
-                    </button>
-                </form>
+            <h2 class="text-center text-lg font-bold mb-4">Put in your Calorie Intake here</h2>
+            <hr class="mb-4">
+            
+            <!-- Check if BMR is set -->
+            @if(is_null($bmr))
+                <div class="text-center mb-4 text-red-600 font-semibold">
+                    <p>BMR not set! Please calculate first.</p>
+                </div>
+            @endif
+
+            <form id="calorieForm" class="mb-4" action="{{ route('store.planning') }}" method="POST">
+                @csrf
+                <input 
+                    id="kcal_intake" 
+                    name="kcal_intake" 
+                    placeholder="Enter Calorie Quota"
+                    class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500
+                        @if(is_null($bmr)) bg-gray-200 cursor-not-allowed @endif"
+                    @if(is_null($bmr)) disabled @endif
+                    title="@if(is_null($bmr)) Please calculate your BMR first in the calculator! @endif">
+                <button 
+                    id="submitCalorieBtn" 
+                    type="submit"
+                    class="w-full py-2 px-4 mt-4 font-semibold rounded-md 
+                        @if(is_null($bmr)) bg-gray-400 cursor-not-allowed text-gray-700 @else bg-blue-600 text-white hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 @endif"
+                    @if(is_null($bmr)) disabled @endif
+                    title="@if(is_null($bmr)) You need to calculate your BMR first! @endif">
+                    Input
+                </button>
+            </form>
                 <hr class="mb-4">
                 <div class="overflow-x-auto">
                     <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-lg">

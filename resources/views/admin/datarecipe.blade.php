@@ -40,9 +40,8 @@
                                 <th class="p-2 border-b">ID</th>
                                 <th class="p-2 border-b">Recipe Name</th>
                                 <th class="p-2 border-b">Total_kcal</th>
-                                <th class="p-2 border-b">Like_count</th>
-                                <th class="p-2 border-b">Dislike_count</th>
                                 <th class="p-2 border-b">Create_at</th>
+                                <th class="p-2 border-b">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -51,9 +50,17 @@
                                 <td class="p-2 border-b">{{ $recipe->id }}</td>
                                 <td class="p-2 border-b">{{ $recipe->recipe_name }}</td>
                                 <td class="p-2 border-b">{{ $recipe->total_kcal }}</td>
-                                <td class="p-2 border-b">{{ $recipe->like_count }}</td>
-                                <td class="p-2 border-b">{{ $recipe->dislike_count }}</td>
                                 <td class="p-2 border-b">{{ $recipe->created_at }}</td>
+                                <td class="p-2 border-b">
+                                <form action="{{ route('recipe.destroy', $recipe->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                        class="text-red-600 hover:text-red-800 font-medium transition">
+                                        Delete
+                                    </button>
+                                </form>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

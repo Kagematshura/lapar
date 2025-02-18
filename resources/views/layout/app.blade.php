@@ -23,7 +23,7 @@
                 ['name' => 'Settings', 'link' => '/settings', 'icon' => 'cog', 'guest' => false],
                 ['name' => 'Create Recipe', 'link' => '/recipe/create', 'icon' => 'edit-alt', 'guest' => false],
                 ['name' => 'Planning', 'link' => '/planning', 'icon' => 'scatter-chart', 'guest' => false],
-                ['name' => 'Search', 'link' => '/Search', 'icon' => 'search-alt-2']
+                ['name' => 'Search', 'link' => '/search', 'icon' => 'search-alt-2']
             ];
 
             if ($isGuest) {

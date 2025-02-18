@@ -12,7 +12,8 @@ class CalculatorController extends Controller
     // Display the form
     public function index()
     {
-        return view('plan.calculator');
+        $bmr = auth()->user()->bmr ?? 2000;        
+        return view('plan.calculator', compact('bmr'));
     }
 
     // Handle BMI and BMR calculation
@@ -59,6 +60,21 @@ class CalculatorController extends Controller
         return view('plan.calculator', compact('bmi', 'bbi', 'kategori', 'bmr', 'gender', 'umur'));
     }
 
+    public function updatebmr(Request $request)
+    {
+        $request->validate([
+            'bmr' => 'required|numeric|min:100'
+        ]);
+    
+        $user = Auth::user();
+        $user->bmr = $request->bmr;
+        $user->save();
+    
+        return redirect()->route('plan.planning')->with('success', 'BMR updated successfully!');
+    }
+    
+
+
     public function getWeeklyData()
     {
         $startOfWeek = Carbon::now('Asia/Jakarta')->startOfWeek();
@@ -76,10 +92,12 @@ class CalculatorController extends Controller
         }));
     }
     public function indexPlanning(){
+        $user = Auth::user();
+        $bmr = $user->bmr;
         $planning = Planning::where('user_id', auth()->id())->get();
         $berat = BB::where('user_id', auth()->id())->get();
 
-        return view('plan.planning', compact('planning', 'berat'));
+        return view('plan.planning', compact('planning', 'berat', 'bmr'));
     }
 
     public function storePlanning(Request $request) {    

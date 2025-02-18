@@ -47,10 +47,14 @@
 
             {{-- Action Buttons --}}
             <div class="flex flex-col gap-3">
-                @foreach(['Turunkan', 'Jaga Stabilitas', 'Naikkan'] as $action)
-                <a href="{{ route('plan.planning') }}" class="bg-[#185863] hover:bg-[#144E53] text-white font-medium py-2 px-6 rounded-lg shadow-md text-center">
-                    {{ $action }}
-                </a>
+                @foreach(['Turunkan' => -500, 'Jaga Stabilitas' => 0, 'Naikkan' => 500] as $action => $change)
+                <form action="{{ route('plan.bmr') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="bmr" value="{{ $bmr + $change }}">
+                    <button type="submit" class="bg-[#185863] hover:bg-[#144E53] text-white font-medium py-2 px-6 rounded-lg shadow-md text-center w-full">
+                        {{ $action }}
+                    </button>
+                </form>
                 @endforeach
             </div>
 

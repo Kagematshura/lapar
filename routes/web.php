@@ -42,10 +42,9 @@ Route::post('/profile/update', [ProfileController::class, 'update'])->name('prof
 
 //calculator
 Route::get('/bmi-calculator', [CalculatorController::class, 'showForm'])->name('bmi.calculator');
-Route::post('/bmi-calculator', [CalculatorController::class, 'calculate'])->name('calculate.bmi');
-
 Route::get('/calculator', [CalculatorController::class, 'index'])->name('calculator.index');
 Route::post('/calculator/calculate', [CalculatorController::class, 'calculate'])->name('calculate.bmi');
+Route::post('/calculator/planquota', [CalculatorController::class, 'updatebmr'])->name('plan.bmr');
 Route::get('/planning', [CalculatorController::class, 'indexPlanning'])->name('plan.planning');
 Route::get('/calorie-data', [CalculatorController::class, 'getWeeklyData']);
 Route::post('/planning/calorie/store', [CalculatorController::class, 'storePlanning'])->name('store.planning');

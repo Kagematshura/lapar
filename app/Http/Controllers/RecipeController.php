@@ -51,7 +51,7 @@ class RecipeController extends Controller
         $recipe = Recipe::findOrFail($id);
         $recipe->delete();
 
-        return redirect()->route('recipe.main')->with('success', 'Recipe deleted successfully.');
+        return redirect()->route('admin.datarecipe')->with('success', 'Recipe deleted successfully.');
     }
     public function show($id)
     {
