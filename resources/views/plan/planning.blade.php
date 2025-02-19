@@ -3,14 +3,16 @@
 @section('content')
 <body class="bg-[#185863]">
 
-    <main class="flex flex-1 items-center justify-center font-poppins min-h-screen overflow-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 w-full max-w-5xl overflow-auto">
+    <div class="flex h-screen overflow-auto w-full">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 w-full p-4">
+
             <!-- Calorie Chart Section -->
-            <div class="col-span-1 bg-white p-6 rounded-lg shadow-lg">
+            <div class="col-span-1 bg-white rounded-lg shadow-lg">
                 <h2 class="text-center text-lg font-bold mb-4">PLANNING</h2>
                 <hr class="mb-4">
                 <div class="flex justify-center">
-                    <div class="w-[90%] h-64">
+                    <div class="w-full">
                         <canvas id="calorieChart"></canvas>
                     </div>
                 </div>
@@ -70,11 +72,11 @@
             </div>
 
             <!-- Body Weight Chart Section -->
-            <div class="col-span-1 bg-white p-6 rounded-lg shadow-lg">
+            <div class="col-span-1 bg-white rounded-lg shadow-lg">
                 <h2 class="text-center text-lg font-bold mb-4">Body Weight</h2>
                 <hr class="mb-4">
                 <div class="flex justify-center">
-                    <div class="w-[90%] h-64">
+                    <div class="w-full">
                         <canvas id="BBChart"></canvas>
                     </div>
                 </div>
@@ -112,7 +114,7 @@
                 </div>
             </div>
         </div>
-    </main>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
