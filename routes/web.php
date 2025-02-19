@@ -20,6 +20,7 @@ Route::get('/login_page', [LoginController::class, 'view'])->name('login.page');
 Route::post('/signup', [LoginController::class, 'signup'])->name('login.signup');
 Route::post('/login', [LoginController::class, 'login'])->name('login.login');
 Route::post('/logout', [LoginController::class, 'logout'])->name('login.logout');
+Route::delete('/admin/DataUser/{user}', [LoginController::class, 'destroy'])->name('login.destroy');
 
 Route::get('/login_test', [LoginController::class, 'loginTest'])->name('login.test');
 
@@ -52,7 +53,7 @@ Route::post('/planning/calorie/store', [CalculatorController::class, 'storePlann
 Route::post('/planning/bb/store', [CalculatorController::class, 'storeBB'])->name('store.bb');
 
 //APISearch
-Route::get('/Search', [ApiSearchController::class, 'search'])->name('API.search');
+Route::get('/search', [ApiSearchController::class, 'search'])->name('API.search');
 // Settings
 Route::get('/settings', [SettingsController::class, 'index'])->name('settings.settings');
 
@@ -66,3 +67,9 @@ Route::delete('/delete-image/{id}', [CaroImageController::class, 'deleteCaroImag
 Route::get('/admin/DataUser', [AdminController::class, 'AdminUser'])->name('admin.datauser');
 Route::get('/admin/Home', [AdminController::class, 'AdminHomePage'])->name('admin.home');
 Route::get('/admin', [AdminController::class, 'AdminLogin'])->name('admin.adminlogin');
+Route::post('/admin', [AdminController::class, 'login'])->name('admin.login');
+Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
+
+// Search
+// Route::get('/search', action: [ApiSearchController::class, 'index']);
+Route::post('/search/food', [ApiSearchController::class, 'searchFood'])->name('food.search');

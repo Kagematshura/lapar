@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -25,5 +26,17 @@ class AdminController extends Controller
 
     public function AdminLogin(){
         return view("admin.adminlogin");
+    }
+
+    public function login(Request $request)
+    {
+        Auth::guard('admin')->attempt(['username' => $request->username, 'password' => $request->password]);
+        return redirect()->route('admin.home');
+    }
+
+    public function logout()
+    {
+        Auth::guard('admin')->logout();
+        return redirect()->route('admin.adminlogin');
     }
 }

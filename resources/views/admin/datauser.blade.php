@@ -47,6 +47,7 @@
                 <th class="p-2 border-b">Nama</th>
                 <th class="p-2 border-b">Email</th>
                 <th class="p-2 border-b">Tanggal Bergabung</th>
+                <th class="p-2 border-b">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -56,6 +57,16 @@
                 <td class="p-2 border-b">{{ $user->name }}</td>
                 <td class="p-2 border-b">{{ $user->email }}</td>
                 <td class="p-2 border-b">{{ $user->created_at }}</td>
+                <td class="p-2 border-b">
+                <form action="{{ route('login.destroy', $user->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit"
+                        class="text-red-600 hover:text-red-800 font-medium transition">
+                        Delete
+                    </button>
+                </form>
+                </td>
               </tr>
               @endforeach
             </tbody>

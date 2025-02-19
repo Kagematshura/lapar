@@ -16,7 +16,15 @@
                     <a href="/admin/DataRecipe" class="px-6 py-3 bg-gray-700 rounded-full text-white hover:bg-gray-600">Recipe</a>
                     <a href="/admin/DataUser" class="px-6 py-3 bg-gray-700 rounded-full text-white hover:bg-gray-600">User</a>
                 </div>
-                <a href="#" class="w-full mt-4 max-w-xs px-6 py-3 bg-red-600 rounded-full text-white hover:bg-red-500 text-center">Logout</a>
+                <!-- <a href="#" class="w-full mt-4 max-w-xs px-6 py-3 bg-red-600 rounded-full text-white hover:bg-red-500 text-center">Logout</a> -->
+                <div>
+                <form method="POST" action="{{ route('admin.logout') }}">
+                    @csrf
+                    <button type="submit" class="w-full mt-4 max-w-xs px-6 py-3 bg-red-600 rounded-full text-white hover:bg-red-500 text-center">
+                        Logout
+                    </button>
+                </form>
+                </div>
             </main>
         </div>
     </div>

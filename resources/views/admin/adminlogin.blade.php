@@ -10,23 +10,28 @@
     <div class="flex w-3/4 max-w-4xl bg-[#2B4052] rounded-lg overflow-hidden shadow-lg">
         <!-- Form Login -->
         <div class="w-1/2 p-8">
-            <form>
-                <div class="mb-4">
-                    <label class="block text-white mb-1">Username</label>
-                    <input type="text" class="w-full px-4 py-2 rounded bg-gray-700 text-white focus:outline-none" placeholder="Username">
-                </div>
-                <div class="mb-4">
-                    <label class="block text-white mb-1">Password</label>
-                    <input type="password" class="w-full px-4 py-2 rounded bg-gray-700 text-white focus:outline-none" placeholder="Password">
-                </div>
-                <button class="w-full py-2 mt-2 bg-[#031C30] text-white rounded-lg hover:bg-[#04324D]">Sign In</button>
-                <div class="flex justify-between items-center mt-4 text-white text-sm">
-                    <div>
-                        <input type="checkbox" id="remember" class="mr-2">
-                        <label for="remember">Remember Me</label>
-                    </div>
-                </div>
-            </form>
+            @if(session('error'))
+                <div class="mb-4 text-red-500">{{ session('error') }}</div>
+            @endif
+            <form action="{{ route('admin.login') }}" method="POST">
+    @csrf
+    <div class="mb-4">
+        <label class="block text-white mb-1">Username</label>
+        <input type="text" name="username" class="w-full px-4 py-2 rounded bg-gray-700 text-white focus:outline-none" placeholder="Username">
+    </div>
+    <div class="mb-4">
+        <label class="block text-white mb-1">Password</label>
+        <input type="password" name="password" class="w-full px-4 py-2 rounded bg-gray-700 text-white focus:outline-none" placeholder="Password">
+    </div>
+    <button class="w-full py-2 mt-2 bg-[#031C30] text-white rounded-lg hover:bg-[#04324D]">Sign In</button>
+    <div class="flex justify-between items-center mt-4 text-white text-sm">
+        <div>
+            <input type="checkbox" name="remember" id="remember" class="mr-2">
+            <label for="remember">Remember Me</label>
+        </div>
+    </div>
+</form>
+
         </div>
         
         <!-- Welcome Section -->
