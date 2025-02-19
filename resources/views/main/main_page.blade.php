@@ -1,6 +1,18 @@
 @extends('layout.app')
 
 @section('content')
+<style>
+#recent-uploads-container {
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+#recent-uploads-container > * {
+    scroll-snap-align: start;
+    flex: 0 0 auto;
+}
+</style>
+
 <body class="bg-[#185863] font-poppins">
 
     <div class="flex h-screen overflow-auto w-full">
@@ -52,17 +64,8 @@
                         <p class="text-white">No recent uploads found. Start uploading your recipes!</p>
                     </div>
                 @else
-                <div class="flex flex-wrap gap-4 justify-center md:justify-start">
-                    @foreach ($recentUploads as $upload)
-                    <div class="bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105 w-full sm:w-48 md:w-64">
-                        <div class="bg-gray-300 w-full h-48 md:h-64 flex flex-col items-center justify-center rounded-lg relative group">
-                            <img src="{{ asset('storage/' . $upload->image) ?? 'https://placehold.co/400' }}" alt="Food Image" class="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-300 ease-in-out">
-                            <div class="absolute bottom-0 bg-black bg-opacity-50 w-full text-white text-center py-2 rounded-b-lg">
-                                <a href="{{ route('recipe.show', $upload->id) }}" class="font-semibold hover:text-[#1b405f]">{{ $upload->recipe_name }}</a>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
+                <div id="recent-uploads-container" class="flex overflow-x-auto md:overflow-x-visible md:flex-wrap gap-5 justify-start">
+                    @include('partials.recent_uploads')
                 </div>
                 @endif
             </div>
@@ -93,6 +96,32 @@
     </div>
 
     <script>
+        let page = 2;
+        document.addEventListener("click", function (event) {
+        if (event.target.id === "loadMore") {
+            fetch(`{{ route('main.main_page') }}?page=${page}`, {
+                headers: { "X-Requested-With": "XMLHttpRequest" }
+            })
+            .then(response => response.text())
+            .then(html => {
+                let container = document.getElementById("recent-uploads-container");
+
+                // Append new content
+                container.insertAdjacentHTML("beforeend", html);
+
+                page++;
+
+                // Remove the existing button
+                document.getElementById("loadMore")?.remove();
+
+                // Check if there's no "Load More" button left, meaning no more pages
+                if (!document.getElementById("loadMore")) {
+                    console.log("No more pages to load.");
+                }
+            });
+        }
+        });
+
         // JavaScript for carousel functionality
         const items = document.querySelectorAll('.carousel-item');
         const totalItems = items.length;

@@ -3,7 +3,7 @@
 
 <div class="flex h-screen">
     <!-- Sidebar Toggle Button (Visible only on mobile) -->
-    <button id="sidebarToggle" class="fixed top-4 left-4 z-50 p-2 bg-[#2A7886] text-white rounded lg:hidden">
+    <button id="sidebarToggle" class="fixed top-4 left-4 z-50 p-2 bg-[#123a41] text-white rounded lg:hidden">
         <box-icon name="menu" color="white"></box-icon>
     </button>
 

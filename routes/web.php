@@ -30,6 +30,7 @@ Route::post('/recipe/store', [RecipeController::class, 'store'])->name('recipe.s
 Route::get('/recipe/{id}', [RecipeController::class, 'show'])->name('recipe.show');
 Route::delete('/recipe/{recipe}', [RecipeController::class, 'destroy'])->name('recipe.destroy');
 Route::post('/recipe/{post}/like', [RecipeController::class, 'like'])->name('recipe.like');
+Route::get('/recipes/load-more', [RecipeController::class, 'loadMoreRecipes']);
 
 //mainPage
 Route::get('/main_page', [MainPageController::class, 'index'])->name('main.main_page');
