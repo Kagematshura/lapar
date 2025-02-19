@@ -18,4 +18,12 @@ class AdminController extends Controller
         $users = User::all();
         return view("admin.datauser", compact('users'));
     }
+
+    public function AdminHomePage(){
+        return view("admin.home");
+    }
+
+    public function AdminLogin(){
+        return view("admin.adminlogin");
+    }
 }
