@@ -63,3 +63,5 @@ Route::post('/upload-image', [CaroImageController::class, 'uploadCaroImage'])->n
 Route::delete('/delete-image/{id}', [CaroImageController::class, 'deleteCaroImage'])->name('delete.caroimage');
 
 Route::get('/admin/DataUser', [AdminController::class, 'AdminUser'])->name('admin.datauser');
+Route::get('/admin/Home', [AdminController::class, 'AdminHomePage'])->name('admin.home');
+Route::get('/admin', [AdminController::class, 'AdminLogin'])->name('admin.adminlogin');

@@ -30,7 +30,9 @@
           </nav>
         </div>
         <div>
-          <button class="w-full p-2 bg-red-600 rounded">Logout</button>
+          <a href="/admin/Home">
+            <button class="w-full p-2 bg-red-600 rounded">Back to home</button>   
+          </a>
         </div>
       </aside>
 
