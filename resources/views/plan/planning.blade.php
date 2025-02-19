@@ -3,8 +3,8 @@
 @section('content')
 <body class="bg-[#185863]">
 
-    <main class="flex flex-1 items-center justify-center font-poppins h-screen overflow-auto">
-        <div class="grid grid-cols-2 gap-10 w-full max-w-5xl">
+    <main class="flex flex-1 items-center justify-center font-poppins min-h-screen overflow-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 w-full max-w-5xl overflow-auto">
             <!-- Calorie Chart Section -->
             <div class="col-span-1 bg-white p-6 rounded-lg shadow-lg">
                 <h2 class="text-center text-lg font-bold mb-4">PLANNING</h2>
@@ -18,7 +18,7 @@
 
             <!-- Calorie Input & Table -->
             <div class="col-span-1 bg-white p-6 rounded-lg shadow-lg">
-            <h2 class="text-center text-lg font-bold mb-4">Put in your Calorie Intake here</h2>
+            <h2 class="text-center text-lg font-bold mb-4 break-words">Put in your Calorie Intake here</h2>
             <hr class="mb-4">
 
             <!-- Check if BMR is set -->
@@ -53,8 +53,8 @@
                     <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-lg">
                         <thead>
                             <tr class="bg-blue-600 text-white">
-                                <th class="px-6 py-4 border text-lg">CALORIE INTAKE</th> <!-- Increased padding and font size -->
-                                <th class="px-6 py-4 border text-lg">REGISTERED AT</th> <!-- Increased padding and font size -->
+                                <th class="px-6 py-4 border text-lg">CALORIE INTAKE</th>
+                                <th class="px-6 py-4 border text-lg">REGISTERED AT</th>
                             </tr>
                         </thead>
                         <tbody id="calorieTableBody">
@@ -112,7 +112,7 @@
                 </div>
             </div>
         </div>
-
+    </main>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
@@ -174,7 +174,6 @@
                     },
                 });
             }
-
             let calorieChart = createChart("calorieChart", "Calorie Intake", "rgba(54, 162, 235, 1)", "calorieTableBody", "kcal");
             let BBChart = createChart("BBChart", "Body Weight", "rgba(255, 99, 132, 1)", "BBTableBody", "kg");
         });
