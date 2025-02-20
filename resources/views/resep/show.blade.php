@@ -15,7 +15,7 @@
                     <img src="{{ asset('storage/' . $recipe->image) ?? 'https://placehold.co/150' }}" alt="thumbnail" class="w-full max-w-md h-96 object-cover rounded-lg shadow-md">
                 </div>
                 <div class="w-full md:w-1/2 mt-6 md:mt-0">
-                    <h2 class="text-2xl font-semibold text-[#0B4A7C] mb-4">Description</h2>
+                    <h2 class="text-2xl font-semibold text-[#0B4A7C] mb-4">Deskripsi</h2>
                     <p>{{ $recipe->description }}</p>
                     <div class="flex space-x-4 mt-6">
                         <form action="{{ route('recipe.like', $recipe->id) }}" method="POST">
@@ -39,14 +39,14 @@
             <hr class="border-t border-gray-400 mb-3 mt-6 w-full">
             <div class="mb-8 mt-10 flex flex-col md:flex-row md:space-x-6">
                 <div class="w-full md:w-1/2">
-                    <h2 class="text-2xl font-semibold text-[#0B4A7C] mb-4">Ingredients</h2>
+                    <h2 class="text-2xl font-semibold text-[#0B4A7C] mb-4">Bahan-bahan</h2>
                     <ul class="list-disc pl-6 mt-4 text-lg">
                         {!! $recipe->ingredient !!}
                     </ul>
                 </div>
                 <div class="border-l-2 border-gray-400 h-auto hidden md:block"></div>
                 <div class="w-full md:w-1/2 mt-6 md:mt-0">
-                    <h2 class="text-2xl font-semibold text-[#0B4A7C] mb-4">Instructions</h2>
+                    <h2 class="text-2xl font-semibold text-[#0B4A7C] mb-4">Cara Membuat</h2>
                     <ol class="list-decimal pl-6 mt-4 text-lg space-y-2">
                         {!! $recipe->instruction !!}
                     </ol>
@@ -55,8 +55,8 @@
 
             <hr class="border-t border-gray-400 mb-6 w-full">
             <div class="mb-8 mt-10">
-                <h2 class="text-2xl font-semibold text-[#0B4A7C] mb-4">Calorie Information</h2>
-                <p class="text-lg">Total Kcal : {{ $recipe->total_kcal }}</p>
+                <h2 class="text-2xl font-semibold text-[#0B4A7C] mb-4">Informasi Kalori</h2>
+                <p class="text-lg">Total Kalori : {{ $recipe->total_kcal }}</p>
             </div>
         </div>
     </div>

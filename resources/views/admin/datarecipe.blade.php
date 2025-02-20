@@ -48,7 +48,7 @@
                         </thead>
                         <tbody>
                             @foreach ($recipes as $recipe)
-                            <tr>
+                            <tr class="text-center">
                                 <td class="p-2 border-b">{{ $recipe->id }}</td>
                                 <td class="p-2 border-b">{{ $recipe->recipe_name }}</td>
                                 <td class="p-2 border-b">{{ $recipe->total_kcal }}</td>
