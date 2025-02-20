@@ -11,6 +11,6 @@
 
 @if ($recentUploads->hasMorePages())
 <div class="place-content-center">
-    <button id="loadMore" class="px-4 py-2 bg-blue-500 text-white rounded">Load More</button>
+    <button id="loadMore" class="px-4 py-2 bg-[#205a8a] text-white rounded">Load More</button>
 </div>
 @endif
