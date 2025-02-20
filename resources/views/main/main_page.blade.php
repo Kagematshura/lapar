@@ -52,13 +52,13 @@
                     <input type="text" id="titleFilter" class="w-full md:w-auto p-2 rounded border border-gray-300 px-6" placeholder="Search...">
                     <button
                     onclick="#"
-                    class="w-full md:w-auto bg-[#0B4A7C] px-6 py-2 mt-2 md:mt-0 md:ml-6 text-white rounded-lg shadow-lg hover:bg-[#1b405f]">Search</button>
+                    class="w-full md:w-auto bg-[#0B4A7C] px-6 py-2 mt-2 md:mt-0 md:ml-6 text-white rounded-lg shadow-lg hover:bg-[#1b405f]">Cari</button>
                 </div>
             </div>
 
             <!-- Recently Uploaded by You Section -->
             <div class="w-full px-4 md:px-10 recent-uploads-container">
-                <h2 class="text-white text-2xl font-bold mb-4">Recently Uploaded by You</h2>
+                <h2 class="text-white text-2xl font-bold mb-4">Baru saja diunggah olehmu</h2>
                 @if ($recentUploads->isEmpty())
                     <div class="p-4 text-left">
                         <p class="text-white">No recent uploads found. Start uploading your recipes!</p>
@@ -72,10 +72,10 @@
 
             <!-- Recommendations Section -->
             <div class="w-full px-4 md:px-10 mt-6 md:mt-10 mb-24 md:mb-96 recommendations-container">
-                <h2 class="text-white text-2xl font-bold mb-4">Recommendations</h2>
+                <h2 class="text-white text-2xl font-bold mb-4">Rekomendasi</h2>
                 @if ($recipe->isEmpty())
                     <div class="p-4 text-left">
-                        <p class="text-white">No recommendations found. Explore more recipes!</p>
+                        <p class="text-white">Belum ada rekomendasi untukmu. Mulai jelalajahi!</p>
                     </div>
                 @else
                 <div class="flex flex-wrap gap-4 justify-center md:justify-start">
@@ -185,7 +185,7 @@
                             message = document.createElement('p');
                             message.id = section.messageId;
                             message.className = 'text-white p-4 text-left';
-                            message.textContent = 'No recipes match your search.';
+                            message.textContent = 'Tidak ada resep yang sesuai. Coba keyword lain?';
                             section.container.appendChild(message);
                             setTimeout(() => message.classList.remove('opacity-0'), 10);
                         }

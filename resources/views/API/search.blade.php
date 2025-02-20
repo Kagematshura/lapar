@@ -9,7 +9,7 @@
         <form action="{{ route('food.search') }}" method="POST" class="mb-4">
             @csrf
             <div class="flex items-center space-x-4">
-                <input type="text" name="query" placeholder="Cari makanan..." 
+                <input type="text" name="query" placeholder="Cari makanan..."
                     class="p-2 border border-gray-400 rounded-lg"
                     value="{{ old('query', $query ?? '') }}">
                 <button type="submit" class="bg-[#0B4A7C] text-white w-full p-3 rounded-lg">Cari</button>

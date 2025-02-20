@@ -33,7 +33,7 @@
                             alt="Preview Image"
                             src=""
                             style="display: none;">
-                        <span id="placeholderText" class="text-gray-500">No Image Selected</span>
+                        <span id="placeholderText" class="text-gray-500">Anda belum memilih gambar</span>
                     </div>
                 </div>
 
@@ -95,7 +95,6 @@
     <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        // Initialize Quill Editor
         var quillIngredient = new Quill('#editor_ingredient', {
             placeholder: '',
             // Masukkan bahan-bahan...
@@ -121,7 +120,7 @@
             const placeholderText = document.getElementById('placeholderText');
 
             if (file) {
-                // Validate file size (5MB max)
+                //(5MB max)
                 if (file.size > 5 * 1024 * 1024) {
                     Swal.fire({
                         icon: 'error',
@@ -129,14 +128,14 @@
                         text: 'Maksimum ukuran gambar yang diperbolehkan adalah 5MB.',
                         confirmButtonText: 'OK'
                     });
-                    this.value = ''; // Reset the file input
+                    this.value = ''; // Reset
                     preview.src = '';
                     preview.style.display = 'none';
                     placeholderText.style.display = 'block';
                     return;
                 }
 
-                // Preview the selected image
+                // Preview image
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     preview.src = e.target.result;
@@ -151,7 +150,7 @@
             }
         });
 
-        // Validate total_kcal to only allow numbers
+        // Validate total_kcal
         document.getElementById('total_kcal').addEventListener('input', function(event) {
             let inputVal = this.value;
 
@@ -172,11 +171,9 @@
         document.getElementById('resepForm').addEventListener('submit', function (e) {
             e.preventDefault(); // Prevent default submission
 
-            // Update hidden fields with Quill data
             document.getElementById('ingredient').value = quillIngredient.root.innerHTML;
             document.getElementById('instruction').value = quillInstruction.root.innerHTML;
 
-            // Get values
             const namaResep = document.getElementById('recipe_name').value.trim();
             const deskripsi = document.getElementById('description').value.trim();
             const bahan = document.getElementById('ingredient').value.trim();
@@ -184,7 +181,6 @@
             const kalori = document.getElementById('total_kcal').value.trim();
             const image = document.getElementById('image').files[0];
 
-            // Validation checks
             if (!namaResep || !deskripsi || !bahan || !cara || !kalori) {
                 Swal.fire({
                     icon: 'error',
