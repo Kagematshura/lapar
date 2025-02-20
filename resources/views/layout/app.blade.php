@@ -17,13 +17,13 @@
         @php
             $isGuest = !auth()->check();
             $menuItems = [
-                ['name' => 'Explore', 'link' => '/main_page', 'icon' => 'globe'],
-                ['name' => 'Calculator', 'link' => '/calculator', 'icon' => 'calculator', 'guest' => false],
-                ['name' => 'Profile', 'link' => '/profile', 'icon' => 'user', 'guest' => false],
-                ['name' => 'Settings', 'link' => '/settings', 'icon' => 'cog', 'guest' => false],
-                ['name' => 'Create Recipe', 'link' => '/recipe/create', 'icon' => 'edit-alt', 'guest' => false],
-                ['name' => 'Planning', 'link' => '/planning', 'icon' => 'scatter-chart', 'guest' => false],
-                ['name' => 'Search', 'link' => '/search', 'icon' => 'search-alt-2']
+                ['name' => 'Jelajahi', 'link' => '/main_page', 'icon' => 'globe'],
+                ['name' => 'Kalkulator', 'link' => '/calculator', 'icon' => 'calculator', 'guest' => false],
+                ['name' => 'Profil', 'link' => '/profile', 'icon' => 'user', 'guest' => false],
+                // ['name' => 'Pengaturan', 'link' => '/settings', 'icon' => 'cog', 'guest' => false],
+                ['name' => 'Membuat Resep', 'link' => '/recipe/create', 'icon' => 'edit-alt', 'guest' => false],
+                ['name' => 'Perencanaan', 'link' => '/planning', 'icon' => 'scatter-chart', 'guest' => false],
+                ['name' => 'Pencarian', 'link' => '/search', 'icon' => 'search-alt-2']
             ];
 
             if ($isGuest) {

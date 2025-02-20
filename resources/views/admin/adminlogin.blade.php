@@ -31,9 +31,7 @@
         </div>
     </div>
 </form>
-
         </div>
-        
         <!-- Welcome Section -->
         <div class="w-1/2 flex flex-col justify-center items-center bg-[#031C30] text-white p-8">
             <h2 class="text-2xl font-bold mb-4">Welcome to Admin</h2>

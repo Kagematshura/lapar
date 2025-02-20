@@ -27,10 +27,10 @@
       {{-- Sign Up Form --}}
       <form id="signup-form" action="/signup" method="POST" class="transition-all duration-500 ease-in-out transform opacity-100 translate-x-0">
         @csrf <!-- Add CSRF token for signup form -->
-        <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Create Account</h2>
+        <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Buat Akun</h2>
         <div class="space-y-4">
           <div>
-            <label for="signup-email" class="block text-sm font-medium text-gray-600">Email Address</label>
+            <label for="signup-email" class="block text-sm font-medium text-gray-600">Alamat Email</label>
             <input type="email" id="signup-email" name="email" required class="w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"/>
           </div>
           <div>
@@ -43,26 +43,26 @@
         </div>
 
         {{-- Divider with OR --}}
-        <div class="flex items-center my-6">
+        {{-- <div class="flex items-center my-6">
           <div class="flex-grow border-t border-gray-300"></div>
-          <span class="mx-4 text-sm text-gray-600">OR</span>
+          <span class="mx-4 text-sm text-gray-600">ATAU</span>
           <div class="flex-grow border-t border-gray-300"></div>
-        </div>
+        </div> --}}
 
         {{-- Google Sign Up --}}
-        <a href="#" class="flex items-center justify-center px-2 py-2 mb-6 text-sm text-gray-700 bg-white border border-gray-300 rounded-full hover:bg-gray-100">
+        {{-- <a href="#" class="flex items-center justify-center px-2 py-2 mb-6 text-sm text-gray-700 bg-white border border-gray-300 rounded-full hover:bg-gray-100">
           <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google Logo" class="w-5 h-5 mr-2"/>
-          Sign up with Google
-        </a>
+          Sign up dengan Google
+        </a> --}}
       </form>
 
       {{-- Login Form --}}
       <form id="login-form" action="/login" method="POST" class="absolute top-0 left-0 w-full transition-all duration-500 ease-in-out transform opacity-0 translate-x-full">
         @csrf <!-- Add CSRF token for login form -->
-        <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Welcome Back</h2>
+        <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Selamat Datang Kembali</h2>
         <div class="space-y-4">
           <div>
-            <label for="login-email" class="block text-sm font-medium text-gray-600">Email Address</label>
+            <label for="login-email" class="block text-sm font-medium text-gray-600">Alamat Email</label>
             <input type="email" id="login-email" name="email" required class="w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"/>
           </div>
           <div>
@@ -77,14 +77,14 @@
         {{-- Divider with OR --}}
         <div class="flex items-center my-6">
           <div class="flex-grow border-t border-gray-300"></div>
-          <span class="mx-4 text-sm text-gray-600">OR</span>
+          <span class="mx-4 text-sm text-gray-600">ATAU</span>
           <div class="flex-grow border-t border-gray-300"></div>
         </div>
 
         {{-- Google Login --}}
         <a href="#" class="flex items-center justify-center px-2 py-2 mb-6 text-sm text-gray-700 bg-white border border-gray-300 rounded-full hover:bg-gray-100">
           <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google Logo" class="w-5 h-5 mr-2"/>
-          Log in with Google
+          Log in dengan Google
         </a>
       </form>
     </div>
@@ -129,8 +129,8 @@
       // Validation
       if (!email || !password) {
         Swal.fire({
-          title: 'Error!',
-          text: 'Email and password are required.',
+          title: 'Gagal!',
+          text: 'Email dan password diperlukan.',
           icon: 'error',
           confirmButtonText: 'OK',
         });
@@ -150,25 +150,25 @@
         if (!response.ok) {
           const errorData = await response.json();
           Swal.fire({
-            title: 'Login Failed!',
-            text: errorData.message || 'Invalid email or password.',
+            title: 'Login Gagal!',
+            text: errorData.message || 'Email atau password tidak valid.',
             icon: 'error',
             confirmButtonText: 'OK',
           });
         } else {
           Swal.fire({
-            title: 'Success!',
-            text: 'Login successful. Redirecting...',
+            title: 'Berhasil!',
+            text: 'Login berhasil. Mengalihkan...',
             icon: 'success',
             confirmButtonText: 'OK',
           }).then(() => {
-            window.location.href = '/main_page'; // Redirect to the main page
+            window.location.href = '/main_page';
           });
         }
       } catch (error) {
         Swal.fire({
-          title: 'Error!',
-          text: 'An unexpected error occurred. Please try again later.',
+          title: 'Gagal!',
+          text: 'Error tak terduga terjadi. Coba lagi nanti.',
           icon: 'error',
           confirmButtonText: 'OK',
         });
@@ -185,8 +185,8 @@
       // Validation
       if (!email || !password) {
         Swal.fire({
-          title: 'Error!',
-          text: 'Email and password are required.',
+          title: 'Gagal!',
+          text: 'Email dan password diperlukan.',
           icon: 'error',
           confirmButtonText: 'OK',
         });
@@ -206,25 +206,25 @@
         if (!response.ok) {
           const errorData = await response.json();
           Swal.fire({
-            title: 'Signup Failed!',
-            text: errorData.message || 'Unable to create account.',
+            title: 'Signup Gagal!',
+            text: errorData.message || 'Tidak bisa membuat akun.',
             icon: 'error',
             confirmButtonText: 'OK',
           });
         } else {
           Swal.fire({
-            title: 'Success!',
-            text: 'Signup successful. Redirecting...',
+            title: 'Berhasil!',
+            text: 'Signup berhasil. Mengalihkan...',
             icon: 'success',
             confirmButtonText: 'OK',
           }).then(() => {
-            window.location.href = '/login_page'; // Redirect to the login page
+            window.location.href = '/login_page';
           });
         }
       } catch (error) {
         Swal.fire({
-          title: 'Error!',
-          text: 'An unexpected error occurred. Please try again later.',
+          title: 'Gagal!',
+          text: 'Error tak terduga terjadi. Coba lagi nanti.',
           icon: 'error',
           confirmButtonText: 'OK',
         });

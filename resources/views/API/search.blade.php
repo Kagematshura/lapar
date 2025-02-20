@@ -30,7 +30,7 @@
                 @endforeach
             </ul>
         @else
-            <p class="text-gray-500 p-2">Tidak ada hasil ditemukan.</p>
+            <p class="text-center text-gray-500 p-2">Tidak ada hasil ditemukan. Bila dalam Bahasa Indonesia tidak ada, dapat dicoba dalam Bahasa Inggris.</p>
         @endif
         </div>
         </main>

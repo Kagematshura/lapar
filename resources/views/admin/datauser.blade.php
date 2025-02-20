@@ -52,7 +52,7 @@
             </thead>
             <tbody>
               @foreach ($users as $user)
-              <tr>
+              <tr class="text-center">
                 <td class="p-2 border-b">{{ $user->id }}</td>
                 <td class="p-2 border-b">{{ $user->name }}</td>
                 <td class="p-2 border-b">{{ $user->email }}</td>

@@ -236,6 +236,7 @@
                     text: 'Data berhasil diupload!',
                     confirmButtonText: 'OK'
                 }).then(() => {
+                    location.reload();
                 });
             });
         });
