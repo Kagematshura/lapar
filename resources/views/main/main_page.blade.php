@@ -50,9 +50,6 @@
             <div class="flex-1 flex flex-col items-center justify-center my-4 md:my-8">
                 <div class="w-full px-4 md:w-auto">
                     <input type="text" id="titleFilter" class="w-full md:w-auto p-2 rounded border border-gray-300 px-6" placeholder="Cari...">
-                    <!-- <button
-                    onclick="#"
-                    class="w-full md:w-auto bg-[#0B4A7C] px-6 py-2 mt-2 md:mt-0 md:ml-6 text-white rounded-lg shadow-lg hover:bg-[#1b405f]">Cari</button> -->
                 </div>
             </div>
 
@@ -78,17 +75,8 @@
                         <p class="text-white">Belum ada rekomendasi untukmu. Mulai jelalajahi!</p>
                     </div>
                 @else
-                <div class="flex flex-wrap gap-4 justify-center md:justify-start">
-                    @foreach ($recipe as $recipes)
-                    <div class="bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105 w-full sm:w-48 md:w-64">
-                        <div class="bg-gray-300 w-full h-48 md:h-64 flex flex-col items-center justify-center rounded-lg relative group">
-                            <img src="{{ asset('storage/' . $recipes->image) ?? 'https://placehold.co/400' }}" alt="Food Image" class="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-300 ease-in-out">
-                            <div class="absolute bottom-0 bg-black bg-opacity-50 w-full text-white text-center py-2 rounded-b-lg">
-                                <a href="{{ route('recipe.show', $recipes->id) }}" class="font-semibold hover:text-[#1b405f]">{{ $recipes->recipe_name }}</a>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
+                <div id="recommendations-container" class="flex overflow-x-auto md:overflow-x-visible md:flex-wrap gap-5 justify-start">
+                    @include('partials.main_uploads')
                 </div>
                 @endif
             </div>
@@ -99,7 +87,7 @@
         let page = 2;
         document.addEventListener("click", function (event) {
         if (event.target.id === "loadMore") {
-            fetch(`{{ route('main.main_page') }}?page=${page}`, {
+            fetch(`{{ route('recipe.loadRec') }}?page=${page}`, {
                 headers: { "X-Requested-With": "XMLHttpRequest" }
             })
             .then(response => response.text())
@@ -120,6 +108,33 @@
                 }
             });
         }
+        });
+
+        let recommendationPage = 2;
+
+        document.addEventListener("click", function (event) {
+            if (event.target.id === "loadMoreRecommendations") {
+                fetch(`{{ route('recipe.loadMain') }}?recommendation_page=${recommendationPage}`, {
+                    headers: { "X-Requested-With": "XMLHttpRequest" }
+                })
+                .then(response => response.text())
+                .then(html => {
+                    let container = document.getElementById("recommendations-container");
+                    
+                    // Append new content
+                    container.insertAdjacentHTML("beforeend", html);
+                    
+                    recommendationPage++;
+
+                    // Remove the existing button
+                    document.getElementById("loadMoreRecommendations")?.remove();
+
+                    // Check if there's no "Load More" button left, meaning no more pages
+                    if (!document.getElementById("loadMoreRecommendations")) {
+                        console.log("Tidak ada lagi rekomendasi untuk dimuat.");
+                    }
+                });
+            }
         });
 
         // JavaScript for carousel functionality
