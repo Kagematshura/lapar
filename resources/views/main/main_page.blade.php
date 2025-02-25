@@ -26,6 +26,7 @@
                         <div class="carousel-item w-full h-full transition-transform duration-500 ease-in-out transform translate-x-0">
                             <img
                                 src="{{ $images->image_path ? asset('storage/' . $images->image_path) : 'https://placehold.co/1920x300?text=Image+muncul+disini' }}"
+                                src="{{ $images->image_path ? asset('storage/' . $images->image_path) : 'https://placehold.co/1920x300?text=Image+muncul+disini' }}"
                                 alt="Slide"
                                 class="w-full h-full object-cover">
                         </div>
@@ -50,6 +51,7 @@
             <div class="flex-1 flex flex-col items-center justify-center my-4 md:my-8">
                 <div class="w-full px-4 md:w-auto">
                     <input type="text" id="titleFilter" class="w-full md:w-auto p-2 rounded border border-gray-300 px-6" placeholder="Cari...">
+                    <input type="text" id="titleFilter" class="w-full md:w-auto p-2 rounded border border-gray-300 px-6" placeholder="Cari...">
                 </div>
             </div>
 
@@ -58,6 +60,7 @@
                 <h2 class="text-white text-2xl font-bold mb-4">Baru saja diunggah olehmu</h2>
                 @if ($recentUploads->isEmpty())
                     <div class="p-4 text-left">
+                        <p class="text-white">Belum ada unggahan. Mulai mengunggah sekarang!</p>
                         <p class="text-white">Belum ada unggahan. Mulai mengunggah sekarang!</p>
                     </div>
                 @else
@@ -77,6 +80,8 @@
                 @else
                 <div id="recommendations-container" class="flex overflow-x-auto md:overflow-x-visible md:flex-wrap gap-5 justify-start">
                     @include('partials.main_uploads')
+                <div id="recommendations-container" class="flex overflow-x-auto md:overflow-x-visible md:flex-wrap gap-5 justify-start">
+                    @include('partials.main_uploads')
                 </div>
                 @endif
             </div>
@@ -87,6 +92,7 @@
         let page = 2;
         document.addEventListener("click", function (event) {
         if (event.target.id === "loadMore") {
+            fetch(`{{ route('recipe.loadRec') }}?page=${page}`, {
             fetch(`{{ route('recipe.loadRec') }}?page=${page}`, {
                 headers: { "X-Requested-With": "XMLHttpRequest" }
             })
@@ -120,10 +126,41 @@
                 .then(response => response.text())
                 .then(html => {
                     let container = document.getElementById("recommendations-container");
-                    
+
                     // Append new content
                     container.insertAdjacentHTML("beforeend", html);
-                    
+
+                    recommendationPage++;
+
+                    // Remove the existing button
+                    document.getElementById("loadMoreRecommendations")?.remove();
+
+                    // Check if there's no "Load More" button left, meaning no more pages
+                    if (!document.getElementById("loadMoreRecommendations")) {
+                        console.log("Tidak ada lagi rekomendasi untuk dimuat.");
+                    }
+                });
+            }
+                    console.log("Tidak ada lagi laman untuk dimuat.");
+                }
+            });
+        }
+        });
+
+        let recommendationPage = 2;
+
+        document.addEventListener("click", function (event) {
+            if (event.target.id === "loadMoreRecommendations") {
+                fetch(`{{ route('recipe.loadMain') }}?recommendation_page=${recommendationPage}`, {
+                    headers: { "X-Requested-With": "XMLHttpRequest" }
+                })
+                .then(response => response.text())
+                .then(html => {
+                    let container = document.getElementById("recommendations-container");
+
+                    // Append new content
+                    container.insertAdjacentHTML("beforeend", html);
+
                     recommendationPage++;
 
                     // Remove the existing button
