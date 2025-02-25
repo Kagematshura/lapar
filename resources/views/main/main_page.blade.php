@@ -2,23 +2,40 @@
 
 @section('content')
 <style>
-#recent-uploads-container {
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-}
+    #recent-uploads-container {
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+    }
 
-#recent-uploads-container > * {
-    scroll-snap-align: start;
-    flex: 0 0 auto;
-}
+    #recent-uploads-container > * {
+        scroll-snap-align: start;
+        flex: 0 0 auto;
+    }
+    .carousel-item {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.5s ease-in-out;
+    }
+    #recommendations-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    overflow-x: hidden;
+    }
+
+    @media (min-width: 640px) {
+    #recommendations-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        overflow-x: auto;
+    }
+    }
 </style>
 
 <body class="bg-[#185863] font-poppins">
-
     <div class="flex h-screen overflow-auto w-full">
-
         <div class="flex flex-col flex-1">
-
             <!-- Top Banner Carousel -->
             <div class="w-full relative">
                 <div class="carousel w-full h-48 md:h-64 overflow-hidden relative">
@@ -61,9 +78,9 @@
                         <p class="text-white">Belum ada unggahan. Mulai mengunggah sekarang!</p>
                     </div>
                 @else
-                <div id="recent-uploads-container" class="flex overflow-x-auto md:overflow-x-visible md:flex-wrap gap-5 justify-start">
-                    @include('partials.recent_uploads')
-                </div>
+                    <div id="recent-uploads-container" class="flex overflow-x-auto md:overflow-x-visible md:flex-wrap gap-5 justify-start">
+                        @include('partials.recent_uploads')
+                    </div>
                 @endif
             </div>
 
@@ -75,9 +92,9 @@
                         <p class="text-white">Belum ada rekomendasi untukmu. Mulai jelalajahi!</p>
                     </div>
                 @else
-                <div id="recommendations-container" class="flex overflow-x-auto md:overflow-x-visible md:flex-wrap gap-5 justify-start">
-                    @include('partials.main_uploads')
-                </div>
+                    <div id="recommendations-container" class="flex overflow-x-auto md:overflow-x-visible md:flex-wrap gap-5 justify-start">
+                        @include('partials.main_uploads')
+                    </div>
                 @endif
             </div>
         </div>
@@ -86,32 +103,31 @@
     <script>
         let page = 2;
         document.addEventListener("click", function (event) {
-        if (event.target.id === "loadMore") {
-            fetch(`{{ route('recipe.loadRec') }}?page=${page}`, {
-                headers: { "X-Requested-With": "XMLHttpRequest" }
-            })
-            .then(response => response.text())
-            .then(html => {
-                let container = document.getElementById("recent-uploads-container");
+            if (event.target.id === "loadMore") {
+                fetch(`{{ route('recipe.loadRec') }}?page=${page}`, {
+                    headers: { "X-Requested-With": "XMLHttpRequest" }
+                })
+                .then(response => response.text())
+                .then(html => {
+                    let container = document.getElementById("recent-uploads-container");
 
-                // Append new content
-                container.insertAdjacentHTML("beforeend", html);
+                    // Append new content
+                    container.insertAdjacentHTML("beforeend", html);
 
-                page++;
+                    page++;
 
-                // Remove the existing button
-                document.getElementById("loadMore")?.remove();
+                    // Remove the existing button
+                    document.getElementById("loadMore")?.remove();
 
-                // Check if there's no "Load More" button left, meaning no more pages
-                if (!document.getElementById("loadMore")) {
-                    console.log("Tidak ada lagi laman untuk dimuat.");
-                }
-            });
-        }
+                    // Check if there's no "Load More" button left, meaning no more pages
+                    if (!document.getElementById("loadMore")) {
+                        console.log("Tidak ada lagi laman untuk dimuat.");
+                    }
+                });
+            }
         });
 
         let recommendationPage = 2;
-
         document.addEventListener("click", function (event) {
             if (event.target.id === "loadMoreRecommendations") {
                 fetch(`{{ route('recipe.loadMain') }}?recommendation_page=${recommendationPage}`, {
@@ -120,10 +136,10 @@
                 .then(response => response.text())
                 .then(html => {
                     let container = document.getElementById("recommendations-container");
-                    
+
                     // Append new content
                     container.insertAdjacentHTML("beforeend", html);
-                    
+
                     recommendationPage++;
 
                     // Remove the existing button
@@ -215,16 +231,6 @@
         // Initialize the first slide
         showItem(currentIndex);
     </script>
-
-    <style>
-        /* Carousel Animation */
-        .carousel-item {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.5s ease-in-out;
-        }
-    </style>
 </body>
 </html>
 @endsection
