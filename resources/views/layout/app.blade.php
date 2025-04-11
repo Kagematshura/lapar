@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
     <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
-    <title>Document</title>
+    <link id="dynamic-favicon" rel="icon" type="image/png" href="https://i.imgur.com/L6pr53e.png"">
+    <title>LAPAR</title>
 
     @vite('resources/css/app.css')
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>

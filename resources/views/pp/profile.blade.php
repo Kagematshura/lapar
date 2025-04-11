@@ -47,12 +47,12 @@
                     <!-- Profile Picture Upload -->
                     <div class="flex flex-col items-center space-y-4">
                         <img id="profile-preview"
-                            src="{{ $user->profile_picture ? asset($user->profile_picture) : 'https://placehold.co/150?text=Your\nprofile+picture\ngoes+here' }}"
+                            src="{{ $user->profile_picture ? asset($user->profile_picture) : 'https://placehold.co/150?text=Foto\nprofil+anda\nmuncul+disini' }}"
                             alt="Profile Picture"
                             class="w-32 h-32 md:w-48 md:h-48 rounded-full shadow-lg">
 
                         <label for="profile-picture" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg cursor-pointer">
-                            Upload New Picture
+                            Unggah Foto Profil
                         </label>
                         <input id="profile-picture" type="file" accept="image/*" class="hidden">
                     </div>
@@ -60,7 +60,7 @@
                     <!-- Name Input -->
                     <div class="flex-1 flex flex-col space-y-4 text-white w-full">
                         <div>
-                            <label for="name-input" class="block text-lg">Name:</label>
+                            <label for="name-input" class="block text-lg">Nama:</label>
                             <input id="name-input" type="text" value="{{ $user->name }}" class="p-2 rounded-lg text-black w-full">
                         </div>
 
@@ -68,11 +68,11 @@
                         <div class="flex space-x-4 justify-end pt-4">
                             <button onclick="saveChanges()"
                                 class="bg-[#0B4A7C] hover:bg-[#1b405f] px-6 py-2 rounded-lg text-white font-semibold">
-                                Save
+                                Simpan
                             </button>
                             <button onclick="toggleEdit()"
                                 class="bg-red-700 hover:bg-red-800 px-6 py-2 rounded-lg text-white font-semibold">
-                                Cancel
+                                Batal
                             </button>
                         </div>
                     </div>
